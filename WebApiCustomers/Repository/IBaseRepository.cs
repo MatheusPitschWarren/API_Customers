@@ -6,9 +6,9 @@ namespace WebApiCustomers.Repository
     {
 
         int Create(CustomersModel model);
-        int Delete(int id);
+        int Delete(long id);
         List<CustomersModel> GetAll();
-        CustomersModel GetById(int id);
+        CustomersModel GetById(long id);
         int Update(CustomersModel model);
     }
 }

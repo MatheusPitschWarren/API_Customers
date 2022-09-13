@@ -18,7 +18,7 @@ namespace WebApiCustomers.Repository
             return _customersList;
         }
 
-        public virtual CustomersModel GetById(int id)
+        public virtual CustomersModel GetById(long id)
         {
             return _customersList.Where(x => x.Id == id).FirstOrDefault();
         }
@@ -80,7 +80,7 @@ namespace WebApiCustomers.Repository
             return 404;
         }
 
-        public virtual int Delete(int id)
+        public virtual int Delete(long id)
         {
             var customer = GetById(id);
 
