@@ -8,6 +8,6 @@ namespace AppServices.AppServices
 {
     public class BaseAppServices : IBaseAppServices
     {
-        private readonly IbaseServices _ibaseServices;
+        private readonly IbaseServices _iBaseServices;
     }
 }
