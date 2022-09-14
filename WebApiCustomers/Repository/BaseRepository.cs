@@ -26,8 +26,7 @@ namespace WebApiCustomers.Repository
         }
 
         public int Create(CustomersModel model)
-        {
-            model.Cpf = model.Cpf.Trim().Replace(".", "").Replace("-", "");
+        {            
             model.Id = _customersList.Count + 1;
 
             CustomerValidator validator = new();
@@ -57,8 +56,6 @@ namespace WebApiCustomers.Repository
         public int Update(CustomersModel model)
         {
             var updateModel = GetById(model.Id);
-
-            model.Cpf = model.Cpf.Trim().Replace(".", "").Replace("-", "");
 
             if (updateModel == null)
                 return 404;
