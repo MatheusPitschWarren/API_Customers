@@ -6,7 +6,6 @@ using WebApiCustomers.Repository;
 
 namespace WebApiCustomers.Controllers
 {
-
     [Route("Api/[controller]")]
     [ApiController]
     public class CustomersController : Controller
