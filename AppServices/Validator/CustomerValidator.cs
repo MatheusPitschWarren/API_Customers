@@ -1,41 +1,38 @@
-﻿using Data.Model;
-using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
+using DomainModel.Model;
 
-namespace Data.Validator
+namespace AppServices.Validator
 {
     public class CustomerValidator : AbstractValidator<CustomersModel>
     {
-        
-
         public CustomerValidator()
         {
             RuleFor(c => c.FullName)
                 .NotNull().NotEmpty()
                     .WithMessage("Full name must not be null or empty");
-           
+
             RuleFor(c => c.Email)
                 .NotNull()
-                    .WithMessage("Email must not be null or empty");
-           
+                    .WithMessage("Email must not be null or empty")
+                .EmailAddress()
+                    .WithMessage("Email is not valid")
+                .Equal(v => v.EmailConfirmation)
+                    .WithMessage("Email is not the same as confirmation email");
+
+
             RuleFor(c => c.EmailConfirmation)
                 .NotNull()
                     .WithMessage("Email Confirmation must not be null or empty");
-            
+
             RuleFor(c => c.Cpf)
                 .NotNull()
                 .Must(checkCPF)
                     .WithMessage("Cpf must not be null or empty");
-           
+
             RuleFor(c => c.Cellphone)
                 .NotNull()
                     .WithMessage("Cellphone must not be null or empty");
-            
+
             RuleFor(c => c.DateOfBirth)
                 .NotNull()
                 .LessThan(DateTime.Now.Date)
@@ -77,21 +74,21 @@ namespace Data.Validator
             int[] multiplierTwo = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
 
             string temporaryCpf;
-            string Digit;           
+            string Digit;
             int rest;
-            int sum = 0;            
+            int sum = 0;
 
             cpf = cpf.Trim();
             cpf = cpf.Replace(".", "").Replace("-", "");
             if (cpf.Length != 11)
                 return false;
 
-            temporaryCpf = cpf.Substring(0, 9);            
+            temporaryCpf = cpf.Substring(0, 9);
 
             for (int i = 0; i < 9; i++)
                 sum += int.Parse(temporaryCpf[i].ToString()) * multiplierOne[i];
             rest = sum % 11;
-            
+
             if (rest < 2)
                 rest = 0;
             else
@@ -99,11 +96,11 @@ namespace Data.Validator
             Digit = rest.ToString();
             temporaryCpf = temporaryCpf + Digit;
             sum = 0;
-            
+
             for (int i = 0; i < 10; i++)
                 sum += int.Parse(temporaryCpf[i].ToString()) * multiplierTwo[i];
             rest = sum % 11;
-            
+
             if (rest < 2)
                 rest = 0;
             else
@@ -112,8 +109,5 @@ namespace Data.Validator
 
             return cpf.EndsWith(Digit);
         }
-
-        
-
     }
 }

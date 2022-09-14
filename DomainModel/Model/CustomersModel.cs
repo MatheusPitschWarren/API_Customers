@@ -5,7 +5,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Model
+namespace DomainModel.Model
 {
     public class CustomersModel : BaseModel
     {

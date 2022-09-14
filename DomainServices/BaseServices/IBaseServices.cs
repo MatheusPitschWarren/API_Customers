@@ -1,10 +1,9 @@
-﻿using WebApiCustomers.Model;
+﻿using DomainModel.Model;
 
-namespace WebApiCustomers.Repository
+namespace DomainServices.BaseServices
 {
-    public interface IBaseRepository
+    public interface IBaseServices
     {
-
         int Create(CustomersModel model);
         int Delete(long id);
         List<CustomersModel> GetAll();

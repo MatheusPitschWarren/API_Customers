@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApiCustomers.Model
+namespace DomainModel.Model
 {
     public abstract class BaseModel
     {

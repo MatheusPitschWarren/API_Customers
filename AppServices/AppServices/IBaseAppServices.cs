@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Model
+namespace AppServices.AppServices
 {
-    public class BaseModel
+    public interface IBaseAppServices
     {
-        public int Id { get; set; }
+
     }
 }

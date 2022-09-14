@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "EJQIs6JFuJWbobm+95d/B5DKXaT2Scd1cm/D1HiFHy4s9le5kUCQYaXeGaXletozNot7PSaNti1jTXHcMBO0OA==",
+  "dgSpecHash": "cUHejyhdQnoG1hSyINrv0SUKWghegpAMprhOoK73iLQoKTYx/FtmqP+MB3fm/GnvpujNspzbUq613/cXPzBKCg==",
   "success": true,
   "projectFilePath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\WebApiCustomers\\WebApiCustomers.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\matheus.pitsch_warre\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
+    "C:\\Users\\matheus.pitsch_warre\\.nuget\\packages\\fluentvalidation\\11.2.2\\fluentvalidation.11.2.2.nupkg.sha512",
     "C:\\Users\\matheus.pitsch_warre\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
     "C:\\Users\\matheus.pitsch_warre\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "C:\\Users\\matheus.pitsch_warre\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",

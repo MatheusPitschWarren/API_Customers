@@ -27,4 +27,10 @@ C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\obj\Debug\net6.0\ref
 C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\obj\Debug\net6.0\WebApiCustomers.pdb
 C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\obj\Debug\net6.0\WebApiCustomers.genruntimeconfig.cache
 C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\obj\Debug\net6.0\ref\WebApiCustomers.dll
+C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\bin\Debug\net6.0\AppServices.dll
+C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\bin\Debug\net6.0\DomainModel.dll
+C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\bin\Debug\net6.0\DomainServices.dll
+C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\bin\Debug\net6.0\DomainServices.pdb
+C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\bin\Debug\net6.0\AppServices.pdb
+C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\bin\Debug\net6.0\DomainModel.pdb
 C:\Users\matheus.pitsch_warre\Desktop\Cards\WebApiCustomers\obj\Debug\net6.0\WebApiCustomers.MvcApplicationPartsAssemblyInfo.cs

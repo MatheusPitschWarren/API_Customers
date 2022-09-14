@@ -1,15 +1,11 @@
-﻿using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebApiCustomers.Model;
-using WebApiCustomers.Validator;
+﻿
+using FluentValidation;
+using FluentValidation.Results;
+using DomainModel.Model;
 
-namespace WebApiCustomers.Repository
+namespace DomainServices.BaseServices
 {
-    public class BaseRepository : IBaseRepository
+    public class BaseServices : IBaseServices
     {
         private readonly List<CustomersModel> _customersList = new();
 
@@ -28,7 +24,7 @@ namespace WebApiCustomers.Repository
             model.Cpf = model.Cpf.Trim().Replace(".", "").Replace("-", "");
             model.Id = _customersList.Count + 1;
 
-            CustomerValidator validator = new();
+
             ValidationResult result = validator.Validate(model);
 
             if (result.IsValid)
