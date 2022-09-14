@@ -23,13 +23,20 @@ namespace DomainServices.BaseServices
         {
             model.Cpf = model.Cpf.Trim().Replace(".", "").Replace("-", "");
             model.Id = _customersList.Count + 1;
-
-            foreach (CustomersModel infoCustomer in _customersList)
+            if (!_customersList.Any(p => p.Id == 0))
             {
-                if (model.Cpf != infoCustomer.Cpf && model.Email != infoCustomer.Email)
+                _customersList.Add(model);
+                return 201;
+            }
+            else
+            {
+                foreach (CustomersModel infoCustomer in _customersList)
                 {
-                    _customersList.Add(model);
-                    return 201;
+                    if (model.Cpf != infoCustomer.Cpf && model.Email != infoCustomer.Email)
+                    {
+                        _customersList.Add(model);
+                        return 201;
+                    }
                 }
             }
             return 409;

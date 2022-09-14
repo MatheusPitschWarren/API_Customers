@@ -1,24 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AppServices.AppServices;
 using DomainModel.Model;
-using DomainServices.BaseServices;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AppServices.Controllers
 {
-
     [Route("Api/[controller]")]
     [ApiController]
     public class CustomersController : Controller
     {
-        private readonly IBaseServices _repository;
+        private readonly IBaseAppServices _repository;
 
-        public CustomersController(IBaseServices repository)
+        public CustomersController(IBaseAppServices repository)
         {
             _repository = repository;
         }
 
         [HttpGet]
         public IActionResult Get()
-        {            
+        {
             return Ok(_repository.GetAll());
         }
 
@@ -69,7 +68,7 @@ namespace AppServices.Controllers
 
             if (id == 200)
             {
-                return Ok(_repository.Delete(id));                    
+                return Ok(_repository.Delete(id));
             }
             else
             {

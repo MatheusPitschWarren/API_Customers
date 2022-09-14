@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "FluentValidation/11.2.2": {
+      "FluentValidation/11.2.1": {
         "type": "package",
         "compile": {
           "lib/net6.0/FluentValidation.dll": {
@@ -164,7 +164,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "DomainServices": "1.0.0",
-          "FluentValidation": "11.2.2"
+          "FluentValidation.AspNetCore": "11.2.2"
         },
         "compile": {
           "bin/placeholder/AppServices.dll": {}
@@ -188,7 +188,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "DomainModel": "1.0.0",
-          "FluentValidation": "11.2.2"
+          "FluentValidation.AspNetCore": "11.2.2"
         },
         "compile": {
           "bin/placeholder/DomainServices.dll": {}
@@ -200,16 +200,16 @@
     }
   },
   "libraries": {
-    "FluentValidation/11.2.2": {
-      "sha512": "5QEte2BUZZF6Sezeekr7Zu1THfgpxU7pmuL2SjIrajuGMah+pxPGiRiLtw+x/tSUSSVmcv9LrUe41lKu4l0n4A==",
+    "FluentValidation/11.2.1": {
+      "sha512": "ZrQD0TGd0mHqf/zErZOEaba8cBeInaJj02nqinO+0La3uE08sJ5ScTYqsCbdx9fLHsX8rh+5KH5RtL2eOUS+OA==",
       "type": "package",
-      "path": "fluentvalidation/11.2.2",
+      "path": "fluentvalidation/11.2.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "fluent-validation-icon.png",
-        "fluentvalidation.11.2.2.nupkg.sha512",
+        "fluentvalidation.11.2.1.nupkg.sha512",
         "fluentvalidation.nuspec",
         "lib/net5.0/FluentValidation.dll",
         "lib/net5.0/FluentValidation.xml",
@@ -496,7 +496,6 @@
       "AppServices >= 1.0.0",
       "DomainModel >= 1.0.0",
       "DomainServices >= 1.0.0",
-      "FluentValidation >= 11.2.2",
       "FluentValidation.AspNetCore >= 11.2.2",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
@@ -557,10 +556,6 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
-          "FluentValidation": {
-            "target": "Package",
-            "version": "[11.2.2, )"
-          },
           "FluentValidation.AspNetCore": {
             "target": "Package",
             "version": "[11.2.2, )"
