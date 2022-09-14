@@ -1,21 +1,19 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-using System.Xml.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApiCustomers.Model;
 using WebApiCustomers.Repository;
 
-namespace WebApiCustomers.Controllers
+namespace AppServices.Controllers
 {
 
     [Route("Api/[controller]")]
     [ApiController]
     public class CustomersController : Controller
     {
-        private readonly IBaseRepository _repository;
+        private readonly BaseRepository _repository;
 
-        public CustomersController(IBaseRepository repository)
+        public CustomersController(BaseRepository repository)
         {
-            _repository = repository;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         [HttpGet]
