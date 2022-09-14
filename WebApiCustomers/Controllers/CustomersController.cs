@@ -19,14 +19,21 @@ namespace WebApiCustomers.Controllers
 
         [HttpGet]
         public IActionResult Get()
-        {            
+        {
             return Ok(_repository.GetAll());
         }
 
         [HttpGet("{id}")]
-        public CustomersModel GetById(int id)
+        public IActionResult GetById(int id)
         {
-            return _repository.GetById(id);
+            var response = _repository.GetById(id);
+
+            if (response != null)
+            {
+                return Ok(response);
+            }
+            return NotFound($"Id not found: {id}");
+
         }
 
         [HttpPost]
@@ -42,10 +49,7 @@ namespace WebApiCustomers.Controllers
             {
                 return Conflict();
             }
-            else
-            {
-                return BadRequest();
-            }
+            return BadRequest();
         }
 
         [HttpPut]
@@ -57,10 +61,8 @@ namespace WebApiCustomers.Controllers
                 _repository.Update(model);
                 return Ok();
             }
-            else
-            {
-                return NotFound();
-            }
+            return NotFound();
+
         }
 
         [HttpDelete]
@@ -70,12 +72,9 @@ namespace WebApiCustomers.Controllers
 
             if (id == 200)
             {
-                return Ok(_repository.Delete(id));                    
+                return Ok(_repository.Delete(id));
             }
-            else
-            {
-                return NotFound();
-            }
+            return NotFound();
         }
     }
 }

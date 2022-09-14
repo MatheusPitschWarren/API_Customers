@@ -13,17 +13,19 @@ namespace WebApiCustomers.Repository
     {
         private readonly List<CustomersModel> _customersList = new();
 
-        public virtual List<CustomersModel> GetAll()
+        public List<CustomersModel> GetAll()
         {
             return _customersList;
         }
 
-        public virtual CustomersModel GetById(long id)
+        public CustomersModel GetById(long id)
         {
-            return _customersList.Where(x => x.Id == id).FirstOrDefault();
+            var customer = _customersList.Where(x => x.Id == id).FirstOrDefault();
+
+            return customer;
         }
 
-        public virtual int Create(CustomersModel model)
+        public int Create(CustomersModel model)
         {
             model.Cpf = model.Cpf.Trim().Replace(".", "").Replace("-", "");
             model.Id = _customersList.Count + 1;
@@ -46,16 +48,13 @@ namespace WebApiCustomers.Repository
                         _customersList.Add(model);
                         return 201;
                     }
-                    else
-                    {
-                        return 409;
-                    }
+                    return 409;
                 }
             }
             return 400;
         }
 
-        public virtual int Update(CustomersModel model)
+        public int Update(CustomersModel model)
         {
             var updateModel = GetById(model.Id);
 
@@ -76,11 +75,10 @@ namespace WebApiCustomers.Repository
 
                 return 200;
             }
-
             return 404;
         }
 
-        public virtual int Delete(long id)
+        public int Delete(long id)
         {
             var customer = GetById(id);
 
@@ -89,10 +87,7 @@ namespace WebApiCustomers.Repository
                 _customersList.Remove(customer);
                 return 200;
             }
-            else
-            {
-                return 404;
-            }
+            return 404;
         }
     }
 }
