@@ -24,31 +24,15 @@ namespace DomainServices.BaseServices
             model.Cpf = model.Cpf.Trim().Replace(".", "").Replace("-", "");
             model.Id = _customersList.Count + 1;
 
-
-            ValidationResult result = validator.Validate(model);
-
-            if (result.IsValid)
+            foreach (CustomersModel infoCustomer in _customersList)
             {
-                if (!_customersList.Any())
+                if (model.Cpf != infoCustomer.Cpf && model.Email != infoCustomer.Email)
                 {
                     _customersList.Add(model);
                     return 201;
                 }
-
-                foreach (CustomersModel infoCustomer in _customersList)
-                {
-                    if (model.Cpf != infoCustomer.Cpf && model.Email != infoCustomer.Email)
-                    {
-                        _customersList.Add(model);
-                        return 201;
-                    }
-                    else
-                    {
-                        return 409;
-                    }
-                }
             }
-            return 400;
+            return 409;
         }
 
         public virtual int Update(CustomersModel model)
