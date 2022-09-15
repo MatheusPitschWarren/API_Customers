@@ -10,7 +10,22 @@ namespace WebApiCustomers.Model
 {
     public class CustomersModel : BaseModel
     {
-        public CustomersModel(string fullName, string email, string emailConfirmation, string cpf, string cellphone, DateTime dateOfBirth, bool emailSms, bool whatsapp, string country, string city, string postalCode, string address, int number)
+        public CustomersModel(
+            string fullName,
+            string email,
+            string emailConfirmation,
+            string cpf,
+            string cellphone,
+            DateTime dateOfBirth,
+            bool emailSms,
+            bool whatsapp,
+            string country,
+            string city,
+            string postalCode,
+            string address,
+            int number
+            )
+
         {
             FullName = fullName;
             Email = email;
