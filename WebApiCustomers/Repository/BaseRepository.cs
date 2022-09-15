@@ -1,9 +1,4 @@
 ﻿using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebApiCustomers.Model;
 using WebApiCustomers.Validator;
 
@@ -20,37 +15,26 @@ namespace WebApiCustomers.Repository
 
         public CustomersModel GetById(long id)
         {
-            var customer = _customersList.Where(x => x.Id == id).FirstOrDefault();
+            var customer = _customersList.FirstOrDefault(x => x.Id == id);
 
             return customer;
         }
 
         public int Create(CustomersModel model)
-        {            
+        {
             model.Id = _customersList.Count + 1;
 
-            CustomerValidator validator = new();
-            ValidationResult result = validator.Validate(model);
-
-            if (result.IsValid)
+            if (!_customersList.Any())
             {
-                if (!_customersList.Any())
-                {
-                    _customersList.Add(model);
-                    return 201;
-                }
-
-                foreach (CustomersModel infoCustomer in _customersList)
-                {
-                    if (model.Cpf != infoCustomer.Cpf && model.Email != infoCustomer.Email)
-                    {
-                        _customersList.Add(model);
-                        return 201;
-                    }
-                    return 409;
-                }
+                _customersList.Add(model);
+                return 201;
             }
-            return 400;
+            else if (_customersList.Any(customer => customer.Cpf != model.Cpf || customer.Email != model.Email))
+            {
+                _customersList.Add(model);
+                return 201;
+            }
+            return 409;
         }
 
         public int Update(CustomersModel model)
@@ -60,16 +44,15 @@ namespace WebApiCustomers.Repository
             if (updateModel == null)
                 return 404;
 
-            var customer = _customersList.Where(customer => customer.Cpf == model.Cpf || customer.Email == model.Email).FirstOrDefault();
+            var customer = _customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email);
 
-            if (customer != null)
+            if (customer)
             {
-                updateModel.Id = customer.Id;
+                updateModel.Id = updateModel.Id;
 
-                var index = _customersList.IndexOf(customer);
+                var index = _customersList.IndexOf(updateModel);
 
                 _customersList[index] = model;
-
                 return 200;
             }
             return 404;

@@ -45,11 +45,9 @@ namespace WebApiCustomers.Controllers
             {
                 return Created("", response);
             }
-            else if (response == 409)
-            {
-                return Conflict();
-            }
-            return BadRequest();
+            return Conflict("There is already a customer with this CPF and Email ");
+
+
         }
 
         [HttpPut]
@@ -59,9 +57,9 @@ namespace WebApiCustomers.Controllers
             if (codeHttp == 200)
             {
                 _repository.Update(model);
-                return Ok();
+                return Ok($"customer id was successfully changed: {model.Id}");
             }
-            return NotFound();
+            return NotFound("");
 
         }
 
@@ -74,7 +72,7 @@ namespace WebApiCustomers.Controllers
             {
                 return Ok(_repository.Delete(id));
             }
-            return NotFound();
+            return NotFound($"A customer with that id was not found {id}");
         }
     }
 }
