@@ -2,8 +2,8 @@ using AppServices.Validator;
 using FluentValidation.AspNetCore;
 using DomainServices.BaseServices;
 using FluentValidation;
-using DomainModel.Model;
 using AppServices.AppServices;
+using WebApiCustomers.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 

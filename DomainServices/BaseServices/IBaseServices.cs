@@ -1,4 +1,5 @@
 ﻿using DomainModel.Model;
+using WebApiCustomers.Model;
 
 namespace DomainServices.BaseServices
 {

@@ -1,6 +1,6 @@
 ﻿using AppServices.AppServices;
-using DomainModel.Model;
 using Microsoft.AspNetCore.Mvc;
+using WebApiCustomers.Model;
 
 namespace AppServices.Controllers
 {
@@ -12,7 +12,7 @@ namespace AppServices.Controllers
 
         public CustomersController(IBaseAppServices repository)
         {
-            _repository = repository;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         [HttpGet]
@@ -22,9 +22,16 @@ namespace AppServices.Controllers
         }
 
         [HttpGet("{id}")]
-        public CustomersModel GetById(int id)
+        public IActionResult GetById(int id)
         {
-            return _repository.GetById(id);
+            var response = _repository.GetById(id);
+
+            if (response != null)
+            {
+                return Ok(response);
+            }
+            return NotFound($"Id not found: {id}");
+
         }
 
         [HttpPost]
@@ -36,14 +43,9 @@ namespace AppServices.Controllers
             {
                 return Created("", response);
             }
-            else if (response == 409)
-            {
-                return Conflict();
-            }
-            else
-            {
-                return BadRequest();
-            }
+            return Conflict("There is already a customer with this CPF and Email ");
+
+
         }
 
         [HttpPut]
@@ -53,12 +55,10 @@ namespace AppServices.Controllers
             if (codeHttp == 200)
             {
                 _repository.Update(model);
-                return Ok();
+                return Ok($"customer id was successfully changed: {model.Id}");
             }
-            else
-            {
-                return NotFound();
-            }
+            return NotFound();
+
         }
 
         [HttpDelete]
@@ -70,10 +70,7 @@ namespace AppServices.Controllers
             {
                 return Ok(_repository.Delete(id));
             }
-            else
-            {
-                return NotFound();
-            }
+            return NotFound($"A customer with that id was not found {id}");
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using DomainModel.Model;
+using WebApiCustomers.Model;
 
 namespace AppServices.Validator
 {
@@ -8,11 +8,11 @@ namespace AppServices.Validator
         public CustomerValidator()
         {
             RuleFor(c => c.FullName)
-                .NotNull().NotEmpty()
+                .NotEmpty()
                     .WithMessage("Full name must not be null or empty");
 
             RuleFor(c => c.Email)
-                .NotNull()
+                .NotEmpty()
                     .WithMessage("Email must not be null or empty")
                 .EmailAddress()
                     .WithMessage("Email is not valid")
@@ -21,49 +21,49 @@ namespace AppServices.Validator
 
 
             RuleFor(c => c.EmailConfirmation)
-                .NotNull()
+                .NotEmpty()
                     .WithMessage("Email Confirmation must not be null or empty");
 
             RuleFor(c => c.Cpf)
-                .NotNull()
+                .NotEmpty()
                 .Must(checkCPF)
                     .WithMessage("Cpf must not be null or empty");
 
             RuleFor(c => c.Cellphone)
-                .NotNull()
+                .NotEmpty()
                     .WithMessage("Cellphone must not be null or empty");
 
             RuleFor(c => c.DateOfBirth)
-                .NotNull()
+                .NotEmpty()
                 .LessThan(DateTime.Now.Date)
                     .WithMessage("Date Of Birth must not be null or empty and can't have a date greater than today");
 
             RuleFor(c => c.EmailSms)
-                .NotNull()
+                .NotEmpty()
                     .WithMessage("Email Sms must not be null or empty");
 
             RuleFor(c => c.Whatsapp)
-                .NotNull()
+                .NotEmpty()
                     .WithMessage("Whatsapp must not be null or empty");
 
             RuleFor(c => c.Country)
-                .NotNull()
+                .NotEmpty()
                     .WithMessage("Country must not be null or empty");
 
             RuleFor(c => c.City)
-                .NotNull()
+                .NotEmpty()
                     .WithMessage("City must not be null or empty");
 
             RuleFor(c => c.PostalCode)
-                .NotNull()
+                .NotEmpty()
                     .WithMessage("PostalCode must not be null or empty");
 
             RuleFor(c => c.Address)
-                .NotNull()
+                .NotEmpty()
                     .WithMessage("Address must not be null or empty");
 
             RuleFor(c => c.Number)
-                .NotNull()
+                .NotEmpty()
                     .WithMessage("Number must not be null or empty");
 
         }

@@ -1,7 +1,4 @@
-﻿
-using FluentValidation;
-using FluentValidation.Results;
-using DomainModel.Model;
+﻿using WebApiCustomers.Model;
 
 namespace DomainServices.BaseServices
 {
@@ -9,65 +6,57 @@ namespace DomainServices.BaseServices
     {
         private readonly List<CustomersModel> _customersList = new();
 
-        public virtual List<CustomersModel> GetAll()
+        public List<CustomersModel> GetAll()
         {
             return _customersList;
         }
 
-        public virtual CustomersModel GetById(long id)
+        public CustomersModel GetById(long id)
         {
-            return _customersList.Where(x => x.Id == id).FirstOrDefault();
+            var customer = _customersList.FirstOrDefault(x => x.Id == id);
+
+            return customer;
         }
 
-        public virtual int Create(CustomersModel model)
+        public int Create(CustomersModel model)
         {
-            model.Cpf = model.Cpf.Trim().Replace(".", "").Replace("-", "");
             model.Id = _customersList.Count + 1;
-            if (!_customersList.Any(p => p.Id == 0))
+
+            if (!_customersList.Any())
             {
                 _customersList.Add(model);
                 return 201;
             }
-            else
+            else if (_customersList.Any(customer => customer.Cpf != model.Cpf || customer.Email != model.Email))
             {
-                foreach (CustomersModel infoCustomer in _customersList)
-                {
-                    if (model.Cpf != infoCustomer.Cpf && model.Email != infoCustomer.Email)
-                    {
-                        _customersList.Add(model);
-                        return 201;
-                    }
-                }
+                _customersList.Add(model);
+                return 201;
             }
             return 409;
         }
 
-        public virtual int Update(CustomersModel model)
+        public int Update(CustomersModel model)
         {
             var updateModel = GetById(model.Id);
-
-            model.Cpf = model.Cpf.Trim().Replace(".", "").Replace("-", "");
 
             if (updateModel == null)
                 return 404;
 
-            var customer = _customersList.Where(customer => customer.Cpf == model.Cpf || customer.Email == model.Email).FirstOrDefault();
+            var customer = _customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email);
 
-            if (customer != null)
+            if (customer)
             {
-                updateModel.Id = customer.Id;
+                updateModel.Id = updateModel.Id;
 
-                var index = _customersList.IndexOf(customer);
+                var index = _customersList.IndexOf(updateModel);
 
                 _customersList[index] = model;
-
                 return 200;
             }
-
             return 404;
         }
 
-        public virtual int Delete(long id)
+        public int Delete(long id)
         {
             var customer = GetById(id);
 
@@ -76,10 +65,7 @@ namespace DomainServices.BaseServices
                 _customersList.Remove(customer);
                 return 200;
             }
-            else
-            {
-                return 404;
-            }
+            return 404;
         }
     }
 }

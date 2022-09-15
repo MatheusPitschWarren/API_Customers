@@ -1,4 +1,4 @@
-﻿using DomainModel.Model;
+﻿using WebApiCustomers.Model;
 
 namespace AppServices.AppServices
 {
