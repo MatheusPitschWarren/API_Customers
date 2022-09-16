@@ -26,7 +26,6 @@ namespace WebApiCustomers.Validator
                 .Equal(v => v.EmailConfirmation)
                     .WithMessage("Email is not the same as confirmation email");
 
-
             RuleFor(c => c.EmailConfirmation)
                 .NotEmpty()
                     .WithMessage("Email Confirmation must not be null or empty");
@@ -72,7 +71,6 @@ namespace WebApiCustomers.Validator
             RuleFor(c => c.Number)
                 .NotEmpty()
                     .WithMessage("Number must not be null or empty");
-
         }
 
         public static bool checkCPF(string cpf)

@@ -25,7 +25,6 @@ namespace WebApiCustomers.Model
             string address,
             int number
             )
-
         {
             FullName = fullName;
             Email = email;
@@ -41,7 +40,6 @@ namespace WebApiCustomers.Model
             Address = address;
             Number = number;
         }
-
         public string FullName { get; set; }
 
         public string Email { get; set; }
@@ -72,6 +70,5 @@ namespace WebApiCustomers.Model
         {
             return cpf.Trim().Replace(".", "").Replace("-", "");
         }
-
     }
 }

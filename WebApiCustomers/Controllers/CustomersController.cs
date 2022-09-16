@@ -58,7 +58,6 @@ namespace WebApiCustomers.Controllers
                 return Ok($"customer id was successfully changed: {model.Id}");
             }
             return NotFound("");
-
         }
 
         [HttpDelete]
