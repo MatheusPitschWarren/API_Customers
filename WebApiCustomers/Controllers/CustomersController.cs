@@ -14,7 +14,7 @@ namespace WebApiCustomers.Controllers
 
         public CustomersController(IBaseRepository repository)
         {
-            _repository = repository;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         [HttpGet]
