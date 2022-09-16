@@ -45,9 +45,7 @@ namespace WebApiCustomers.Controllers
             {
                 return Created("", response);
             }
-            return Conflict("There is already a customer with this CPF and Email ");
-
-
+            return BadRequest("There is already a customer with this CPF and Email");
         }
 
         [HttpPut]
