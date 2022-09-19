@@ -50,13 +50,14 @@ namespace WebApiCustomers.Controllers
         [HttpPut]
         public IActionResult Put(CustomersModel model)
         {
-            var codeHttp = _repository.Update(model);
-            if (codeHttp == 200)
+            var response = _repository.Update(model);
+
+            if (response == 200)
             {
                 _repository.Update(model);
                 return Ok($"customer id was successfully changed: {model.Id}");
             }
-            return NotFound("");
+            return NotFound($"A customer with that id was not found: {model.Id}");
         }
 
         [HttpDelete]
@@ -64,11 +65,11 @@ namespace WebApiCustomers.Controllers
         {
             var response = _repository.Delete(id);
 
-            if (id == 200)
+            if (response == 200)
             {
-                return Ok(_repository.Delete(id));
+                return Ok($"The customer with this Id has been deleted: {id}");
             }
-            return NotFound($"A customer with that id was not found {id}");
+            return NotFound($"A customer with that id was not found: {id}");
         }
     }
 }
