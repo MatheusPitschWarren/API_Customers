@@ -1,8 +1,8 @@
 ﻿using WebApiCustomers.Model;
 
-namespace DomainServices.BaseServices
+namespace DomainServices.Services
 {
-    public class BaseServices : IBaseServices
+    public class CustomerServices : ICustomerServices
     {
         private readonly List<CustomersModel> _customersList = new();
 

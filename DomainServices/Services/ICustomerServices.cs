@@ -1,9 +1,9 @@
 ﻿using DomainModel.Model;
 using WebApiCustomers.Model;
 
-namespace DomainServices.BaseServices
+namespace DomainServices.Services
 {
-    public interface IBaseServices
+    public interface ICustomerServices
     {
         List<CustomersModel> GetAll();
         CustomersModel GetById(long id);

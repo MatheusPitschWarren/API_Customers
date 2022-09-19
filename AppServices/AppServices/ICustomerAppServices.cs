@@ -2,7 +2,7 @@
 
 namespace AppServices.AppServices
 {
-    public interface IBaseAppServices
+    public interface ICustomerAppServices
     {
         List<CustomersModel> GetAll();
         CustomersModel GetById(int id);

@@ -3,11 +3,11 @@ using WebApiCustomers.Model;
 
 namespace AppServices.AppServices
 {
-    public class BaseAppServices : IBaseAppServices
+    public class CustomerAppServices : ICustomerAppServices
     {
-        private readonly IBaseServices _baseServices;
+        private readonly ICustomerServices _baseServices;
 
-        public BaseAppServices(IBaseServices baseServices)
+        public CustomerAppServices(ICustomerServices baseServices)
         {
             _baseServices = baseServices ?? throw new ArgumentNullException(nameof(baseServices));
         }

@@ -13,8 +13,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<IBaseServices, BaseServices>();
-builder.Services.AddTransient<IBaseAppServices, BaseAppServices>();
+builder.Services.AddSingleton<ICustomerServices, CustomerServices>();
+builder.Services.AddTransient<ICustomerAppServices, CustomerAppServices>();
 builder.Services.AddFluentValidation();
 builder.Services.AddScoped<IValidator<CustomersModel>, CustomerValidator>();
 
