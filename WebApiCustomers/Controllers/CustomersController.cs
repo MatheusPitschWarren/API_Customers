@@ -8,9 +8,9 @@ namespace AppServices.Controllers
     [ApiController]
     public class CustomersController : Controller
     {
-        private readonly ICustomerAppServices _repository;
+        private readonly ILorota _repository;
 
-        public CustomersController(ICustomerAppServices repository)
+        public CustomersController(ILorota repository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }

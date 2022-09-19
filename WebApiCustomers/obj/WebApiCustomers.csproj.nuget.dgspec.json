@@ -4,12 +4,12 @@
     "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\WebApiCustomers\\WebApiCustomers.csproj": {}
   },
   "projects": {
-    "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\AppServices.csproj": {
+    "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\Lorota.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\AppServices.csproj",
-        "projectName": "AppServices",
-        "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\AppServices.csproj",
+        "projectUniqueName": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\Lorota.csproj",
+        "projectName": "Lorota",
+        "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\Lorota.csproj",
         "packagesPath": "C:\\Users\\matheus.pitsch_warre\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\obj\\",
         "projectStyle": "PackageReference",
@@ -233,8 +233,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\AppServices.csproj": {
-                "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\AppServices.csproj"
+              "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\Lorota.csproj": {
+                "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\Lorota.csproj"
               },
               "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\DomainModel\\DomainModel.csproj": {
                 "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\DomainModel\\DomainModel.csproj"

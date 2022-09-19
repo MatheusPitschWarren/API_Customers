@@ -2,7 +2,7 @@
 
 namespace AppServices.AppServices
 {
-    public interface ICustomerAppServices
+    public interface ILorota
     {
         List<CustomersModel> GetAll();
         CustomersModel GetById(int id);

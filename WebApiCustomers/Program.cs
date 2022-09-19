@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ICustomerServices, CustomerServices>();
-builder.Services.AddTransient<ICustomerAppServices, CustomerAppServices>();
+builder.Services.AddTransient<ILorota, Lorota>();
 builder.Services.AddFluentValidation();
 builder.Services.AddScoped<IValidator<CustomersModel>, CustomerValidator>();
 
