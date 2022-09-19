@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WebApiCustomers.Extension;
 
 namespace WebApiCustomers.Model
 {
@@ -29,7 +23,7 @@ namespace WebApiCustomers.Model
             FullName = fullName;
             Email = email;
             EmailConfirmation = emailConfirmation;
-            Cpf = CpfCorrect(cpf);
+            Cpf = cpf.ToCpfCorrect();
             Cellphone = cellphone;
             DateOfBirth = dateOfBirth;
             EmailSms = emailSms;
@@ -64,11 +58,6 @@ namespace WebApiCustomers.Model
 
         public string Address { get; set; }
 
-        public int Number { get; set; }
-
-        private string CpfCorrect(string cpf)
-        {
-            return cpf.Trim().Replace(".", "").Replace("-", "");
-        }
+        public int Number { get; set; }       
     }
 }

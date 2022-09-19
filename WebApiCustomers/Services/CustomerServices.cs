@@ -1,4 +1,5 @@
-﻿using WebApiCustomers.Model;
+﻿using WebApiCustomers.Extension;
+using WebApiCustomers.Model;
 
 namespace WebApiCustomers.Services
 {
@@ -20,14 +21,14 @@ namespace WebApiCustomers.Services
 
         public int Create(CustomersModel model)
         {
-            model.Id = _customersList.LastOrDefault()?.Id + 1 ?? 1;
+            model.Id = _customersList.LastOrDefault()?.Id + 1 ?? 1;            
 
             if (!_customersList.Any())
             {
                 _customersList.Add(model);
                 return 201;
             }
-            else if (checkDuplicate(_customersList,model))
+            else if (checkDuplicate(_customersList, model))
             {
                 _customersList.Add(model);
                 return 201;
@@ -40,12 +41,10 @@ namespace WebApiCustomers.Services
             var updateModel = GetById(model.Id);
 
             if (updateModel == null)
-                return 404;            
+                return 404;
 
-            if (!checkDuplicate(_customersList,model))
+            if (!checkDuplicate(_customersList, model))
             {
-                updateModel.Id = updateModel.Id;
-
                 var index = _customersList.IndexOf(updateModel);
 
                 _customersList[index] = model;
@@ -58,12 +57,12 @@ namespace WebApiCustomers.Services
         {
             var customer = GetById(id);
 
-            if (customer != null)
+            if (customer == null)
             {
-                _customersList.Remove(customer);
-                return 200;
+                return 404;
             }
-            return 404;
+            _customersList.Remove(customer);
+            return 200;
         }
 
         private bool checkDuplicate(List<CustomersModel> _customersList, CustomersModel model)
