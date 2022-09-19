@@ -10,9 +10,9 @@ namespace WebApiCustomers.Controllers
     [ApiController]
     public class CustomersController : Controller
     {
-        private readonly IBaseRepository _repository;
+        private readonly ICustomerServices _repository;
 
-        public CustomersController(IBaseRepository repository)
+        public CustomersController(ICustomerServices repository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }

@@ -1,8 +1,8 @@
 ﻿using WebApiCustomers.Model;
 
-namespace WebApiCustomers.Repository
+namespace WebApiCustomers.Services
 {
-    public class BaseRepository : IBaseRepository
+    public class CustomerServices : ICustomerServices
     {
         private readonly List<CustomersModel> _customersList = new();
 

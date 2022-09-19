@@ -1,8 +1,8 @@
 ﻿using WebApiCustomers.Model;
 
-namespace WebApiCustomers.Repository
+namespace WebApiCustomers.Services
 {
-    public interface IBaseRepository
+    public interface ICustomerServices
     {
         int Create(CustomersModel model);
         int Delete(long id);
