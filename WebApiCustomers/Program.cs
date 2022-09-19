@@ -1,8 +1,4 @@
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Identity;
-using System.Reflection;
-using WebApiCustomers.Repository;
-using WebApiCustomers.Validator;
+using WebApiCustomers.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

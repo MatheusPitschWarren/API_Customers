@@ -20,7 +20,7 @@ namespace WebApiCustomers.Services
 
         public int Create(CustomersModel model)
         {
-            model.Id = _customersList.Count + 1;
+            model.Id = _customersList.LastOrDefault()?.Id + 1 ?? 1;
 
             if (!_customersList.Any())
             {

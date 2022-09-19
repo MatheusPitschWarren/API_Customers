@@ -1,8 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using System.Xml.Linq;
 using WebApiCustomers.Model;
-using WebApiCustomers.Repository;
+using WebApiCustomers.Services;
 
 namespace WebApiCustomers.Controllers
 {
