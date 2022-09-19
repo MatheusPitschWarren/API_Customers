@@ -23,7 +23,7 @@ namespace WebApiCustomers.Model
             FullName = fullName;
             Email = email;
             EmailConfirmation = emailConfirmation;
-            Cpf = cpf.ToCpfCorrect();
+            Cpf = cpf.CpfCorrect();
             Cellphone = cellphone;
             DateOfBirth = dateOfBirth;
             EmailSms = emailSms;

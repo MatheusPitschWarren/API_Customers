@@ -10,8 +10,7 @@ public class CustomerValidator : AbstractValidator<CustomersModel>
     {
         RuleFor(c => c.FullName)
             .NotEmpty()
-            .MinimumLength(5)
-            .MaximumLength(50);
+            .Length(6, 60);
 
         RuleFor(c => c.Email)
             .NotEmpty()
@@ -20,15 +19,19 @@ public class CustomerValidator : AbstractValidator<CustomersModel>
             .Equal(v => v.EmailConfirmation);
 
         RuleFor(c => c.EmailConfirmation)
-            .NotEmpty();
+            .NotEmpty()
+            .Matches(@"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+                .WithMessage("Email is not valid");
 
         RuleFor(c => c.Cpf)
             .NotEmpty()
-            .Must(c => c.ToCheckCpf())
+            .Must(c => c.CheckCpf())
                 .WithMessage("Cpf is not invalid");
 
         RuleFor(c => c.Cellphone)
-            .NotEmpty();
+            .NotEmpty()
+            .Length(11,16)
+                .WithMessage("Number is not valid");
 
         RuleFor(c => c.DateOfBirth)
             .NotEmpty()
@@ -43,22 +46,19 @@ public class CustomerValidator : AbstractValidator<CustomersModel>
 
         RuleFor(c => c.Country)
             .NotEmpty()
-            .MinimumLength(2)
-            .MaximumLength(30);
+            .Length(2, 50);
 
         RuleFor(c => c.City)
-            .NotEmpty()            
+            .NotEmpty()
             .MaximumLength(50);
 
         RuleFor(c => c.PostalCode)
             .NotEmpty()
-            .MinimumLength(8)
-            .MaximumLength(9);
+            .Length(8, 9);
 
         RuleFor(c => c.Address)
             .NotEmpty()
-            .MinimumLength(1)
-            .MaximumLength(50);
+            .Length(5, 50);
 
         RuleFor(c => c.Number)
             .NotEmpty();

@@ -5,12 +5,12 @@ namespace WebApiCustomers.Extension
 {
     public static class StringExtension
     {        
-        public static string ToCpfCorrect(this string cpf)
+        public static string CpfCorrect(this string cpf)
         {
             return cpf.Trim().Replace(".", "").Replace("-", "");
         }
 
-        public static bool ToCheckCpf(this string cpf)
+        public static bool CheckCpf(this string cpf)
         {
             int[] multiplierOne = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplierTwo = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };

@@ -10,14 +10,6 @@ namespace WebApiCustomers.Services
         List<CustomersModel> GetAll();
         CustomersModel GetById(long id);
         int Update(CustomersModel model);
-
-        private bool checkDuplicate(List<CustomersModel> _customersList, CustomersModel model)
-        {
-            if (_customersList.Any(customer => customer.Cpf != model.Cpf || customer.Email != model.Email))
-            {
-                return false;
-            }
-            return true;
-        }
+        bool checkDuplicate(CustomersModel model);               
     }
 }
