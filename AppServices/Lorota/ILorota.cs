@@ -1,4 +1,5 @@
-﻿using WebApiCustomers.Model;
+﻿using System.Reflection;
+using WebApiCustomers.Model;
 
 namespace AppServices.AppServices
 {
@@ -9,6 +10,5 @@ namespace AppServices.AppServices
         int Create(CustomersModel model);
         int Update(CustomersModel model);
         int Delete(long id);
-
     }
 }

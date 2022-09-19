@@ -31,7 +31,6 @@ namespace AppServices.Controllers
                 return Ok(response);
             }
             return NotFound($"Id not found: {id}");
-
         }
 
         [HttpPost]
@@ -41,24 +40,22 @@ namespace AppServices.Controllers
 
             if (response == 201)
             {
-                return Created("", response);
+                return Ok($"Customer created with Id: {model.Id}");
             }
-            return Conflict("There is already a customer with this CPF and Email ");
-
-
+            return BadRequest("There is already a customer with this CPF and Email");
         }
 
         [HttpPut]
         public IActionResult Put(CustomersModel model)
         {
-            var codeHttp = _repository.Update(model);
-            if (codeHttp == 200)
+            var response = _repository.Update(model);
+
+            if (response == 200)
             {
                 _repository.Update(model);
                 return Ok($"customer id was successfully changed: {model.Id}");
             }
-            return NotFound();
-
+            return NotFound($"A customer with that id was not found: {model.Id}");
         }
 
         [HttpDelete]
@@ -66,11 +63,11 @@ namespace AppServices.Controllers
         {
             var response = _repository.Delete(id);
 
-            if (id == 200)
+            if (response == 200)
             {
-                return Ok(_repository.Delete(id));
+                return Ok($"The customer with this Id has been deleted: {id}");
             }
-            return NotFound($"A customer with that id was not found {id}");
+            return NotFound($"A customer with that id was not found: {id}");
         }
     }
 }

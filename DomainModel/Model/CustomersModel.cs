@@ -1,4 +1,4 @@
-﻿using DomainModel.Model;
+﻿using WebApiCustomers.Extension;
 
 namespace WebApiCustomers.Model
 {
@@ -19,12 +19,11 @@ namespace WebApiCustomers.Model
             string address,
             int number
             )
-
         {
             FullName = fullName;
             Email = email;
             EmailConfirmation = emailConfirmation;
-            Cpf = CpfCorrect(cpf);
+            Cpf = cpf.CpfCorrect();
             Cellphone = cellphone;
             DateOfBirth = dateOfBirth;
             EmailSms = emailSms;
@@ -35,7 +34,6 @@ namespace WebApiCustomers.Model
             Address = address;
             Number = number;
         }
-
         public string FullName { get; set; }
 
         public string Email { get; set; }
@@ -60,12 +58,6 @@ namespace WebApiCustomers.Model
 
         public string Address { get; set; }
 
-        public int Number { get; set; }
-
-        private string CpfCorrect(string cpf)
-        {
-            return cpf.Trim().Replace(".", "").Replace("-", "");
-        }
-
+        public int Number { get; set; }       
     }
 }
