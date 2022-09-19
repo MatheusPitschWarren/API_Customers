@@ -1,7 +1,10 @@
-﻿namespace WebApiCustomers.Extension
+﻿using System.Reflection;
+using WebApiCustomers.Model;
+
+namespace WebApiCustomers.Extension
 {
     public static class StringExtension
-    {
+    {        
         public static string ToCpfCorrect(this string cpf)
         {
             return cpf.Trim().Replace(".", "").Replace("-", "");
@@ -47,7 +50,6 @@
             Digit = Digit + rest.ToString();
 
             return cpf.EndsWith(Digit);
-
-        }
+        }        
     }
 }
