@@ -1,6 +1,4 @@
-﻿using FluentValidation.Results;
-using WebApiCustomers.Model;
-using WebApiCustomers.Validator;
+﻿using WebApiCustomers.Model;
 
 namespace WebApiCustomers.Repository
 {

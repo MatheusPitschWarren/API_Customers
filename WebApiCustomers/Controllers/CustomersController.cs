@@ -33,7 +33,6 @@ namespace WebApiCustomers.Controllers
                 return Ok(response);
             }
             return NotFound($"Id not found: {id}");
-
         }
 
         [HttpPost]

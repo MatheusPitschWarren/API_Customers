@@ -4,7 +4,6 @@ namespace WebApiCustomers.Repository
 {
     public interface IBaseRepository
     {
-
         int Create(CustomersModel model);
         int Delete(long id);
         List<CustomersModel> GetAll();
