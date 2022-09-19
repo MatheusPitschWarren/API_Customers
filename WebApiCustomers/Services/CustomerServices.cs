@@ -27,7 +27,7 @@ namespace WebApiCustomers.Services
                 _customersList.Add(model);
                 return 201;
             }
-            else if (_customersList.Any(customer => customer.Cpf != model.Cpf || customer.Email != model.Email))
+            else if (checkDuplicate(_customersList,model))
             {
                 _customersList.Add(model);
                 return 201;
@@ -40,11 +40,9 @@ namespace WebApiCustomers.Services
             var updateModel = GetById(model.Id);
 
             if (updateModel == null)
-                return 404;
+                return 404;            
 
-            var customer = _customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email);
-
-            if (customer)
+            if (!checkDuplicate(_customersList,model))
             {
                 updateModel.Id = updateModel.Id;
 
@@ -66,6 +64,15 @@ namespace WebApiCustomers.Services
                 return 200;
             }
             return 404;
+        }
+
+        private bool checkDuplicate(List<CustomersModel> _customersList, CustomersModel model)
+        {
+            if (_customersList.Any(customer => customer.Cpf != model.Cpf || customer.Email != model.Email))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
