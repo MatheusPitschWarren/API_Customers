@@ -10,7 +10,8 @@ public class CustomerValidator : AbstractValidator<CustomersModel>
     {
         RuleFor(c => c.FullName)
             .NotEmpty()
-            .Length(6, 60);
+            .MinimumLength(6)
+            .MaximumLength(60);
 
         RuleFor(c => c.Email)
             .NotEmpty()
@@ -30,8 +31,8 @@ public class CustomerValidator : AbstractValidator<CustomersModel>
 
         RuleFor(c => c.Cellphone)
             .NotEmpty()
-            .Length(11,16)
-                .WithMessage("Number is not valid");
+            .MinimumLength(11)
+            .MaximumLength(16);                
 
         RuleFor(c => c.DateOfBirth)
             .NotEmpty()
@@ -46,7 +47,8 @@ public class CustomerValidator : AbstractValidator<CustomersModel>
 
         RuleFor(c => c.Country)
             .NotEmpty()
-            .Length(2, 50);
+            .MinimumLength(2)
+            .MaximumLength(50);
 
         RuleFor(c => c.City)
             .NotEmpty()
@@ -54,13 +56,17 @@ public class CustomerValidator : AbstractValidator<CustomersModel>
 
         RuleFor(c => c.PostalCode)
             .NotEmpty()
-            .Length(8, 9);
+            .MinimumLength(8)
+            .MaximumLength(9);
 
         RuleFor(c => c.Address)
             .NotEmpty()
-            .Length(5, 50);
+            .MinimumLength(5)
+            .MaximumLength(50);
 
         RuleFor(c => c.Number)
-            .NotEmpty();
+            .NotEmpty()
+            .MinimumLength(5)
+            .MaximumLength(50);
     }
 }
