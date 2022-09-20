@@ -508,9 +508,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\WebApiCustomers\\WebApiCustomers.csproj",
-      "projectName": "WebApiCustomers",
-      "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\WebApiCustomers\\WebApiCustomers.csproj",
+      "projectUniqueName": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\WebApiCustomers\\API.csproj",
+      "projectName": "API",
+      "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\WebApiCustomers\\API.csproj",
       "packagesPath": "C:\\Users\\matheus.pitsch_warre\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\WebApiCustomers\\obj\\",
       "projectStyle": "PackageReference",

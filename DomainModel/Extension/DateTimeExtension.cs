@@ -1,4 +1,6 @@
-﻿namespace WebApiCustomers.Extension
+﻿using System;
+
+namespace DomainModel.Extension
 {
     public static class DateTimeExtension
     {

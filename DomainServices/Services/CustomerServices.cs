@@ -1,77 +1,78 @@
-using DomainServices.Services;
-using WebApiCustomers.Model;
+using DomainModel.Model;
+using DomainServices.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace WebApiCustomers.Services
+namespace DomainServices.Services;
+
+public class CustomerServices : ICustomerServices
 {
-    public class CustomerServices : ICustomerServices
+    private readonly List<CustomersModel> _customersList = new();
+
+    public IEnumerable<CustomersModel> GetAll()
     {
-        private readonly List<CustomersModel> _customersList = new();
+        return _customersList;
+    }
 
-        public List<CustomersModel> GetAll()
+    public CustomersModel GetById(long id)
+    {
+        var customer = _customersList.FirstOrDefault(customer => customer.Id == id);
+
+        return customer;
+    }
+
+    public int Create(CustomersModel model)
+    {
+        model.Id = _customersList.LastOrDefault()?.Id + 1 ?? 1;
+
+        if (!_customersList.Any())
         {
-            return _customersList;
+            _customersList.Add(model);
+            return 201;
         }
-
-        public CustomersModel GetById(long id)
+        if (!checkDuplicate(model))
         {
-            var customer = _customersList.FirstOrDefault(x => x.Id == id);
-
-            return customer;
+            _customersList.Add(model);
+            return 201;
         }
+        return 409;
+    }
 
-        public int Create(CustomersModel model)
-        {
-            model.Id = _customersList.LastOrDefault()?.Id + 1 ?? 1;
+    public int Update(CustomersModel model)
+    {
+        var updateCustomer = GetById(model.Id);
 
-            if (!_customersList.Any())
-            {
-                _customersList.Add(model);
-                return 201;
-            }
-            if (!checkDuplicate(model))
-            {
-                _customersList.Add(model);
-                return 201;
-            }
-            return 409;
-        }
-
-        public int Update(CustomersModel model)
-        {
-            var updateModel = GetById(model.Id);
-
-            if (updateModel == null)
-                return 404;
-
-            if (!checkDuplicate(model))
-            {
-                var index = _customersList.IndexOf(updateModel);
-
-                _customersList[index] = model;
-                return 200;
-            }
+        if (updateCustomer == null)
             return 404;
-        }
 
-        public int Delete(long id)
+        if (!checkDuplicate(model))
         {
-            var customer = GetById(id);
+            var index = _customersList.IndexOf(updateCustomer);
 
-            if (customer == null)
-            {
-                return 404;
-            }
-            _customersList.Remove(customer);
+            _customersList[index] = model;
             return 200;
         }
+        return 404;
+    }
 
-        public bool checkDuplicate(CustomersModel model)
+    public int Delete(long id)
+    {
+        var deleteCustomer = GetById(id);
+
+        if (deleteCustomer == null)
         {
-            if (_customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email))
-            {
-                return true;
-            }
-            return false;
+            return 404;
         }
+        _customersList.Remove(deleteCustomer);
+        return 200;
+    }
+
+    public bool checkDuplicate(CustomersModel model)
+    {
+        if (_customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email))
+        {
+            return true;
+        }
+        return false;
     }
 }

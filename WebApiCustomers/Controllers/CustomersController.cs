@@ -1,73 +1,73 @@
-﻿using AppServices.AppServices;
+﻿using AppServices.Interfaces;
+using DomainModel.Model;
 using Microsoft.AspNetCore.Mvc;
-using WebApiCustomers.Model;
+using System;
 
-namespace AppServices.Controllers
+namespace API.Controllers;
+
+[Route("Api/[controller]")]
+[ApiController]
+public class CustomersController : Controller
 {
-    [Route("Api/[controller]")]
-    [ApiController]
-    public class CustomersController : Controller
+    private readonly ICustomersAppServices _customerAppServices;
+
+    public CustomersController(ICustomersAppServices customerAppServices)
     {
-        private readonly ICustomersAppServices _repository;
+        _customerAppServices = customerAppServices ?? throw new ArgumentNullException(nameof(customerAppServices));
+    }
 
-        public CustomersController(ICustomersAppServices repository)
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        var response = _customerAppServices.GetAll();
+        return Ok(response);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetById(long id)
+    {
+        var response = _customerAppServices.GetById(id);
+
+        if (response != null)
         {
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            return Ok(response);
         }
+        return NotFound($"Id not found: {id}");
+    }
 
-        [HttpGet]
-        public IActionResult Get()
+    [HttpPost]
+    public IActionResult Post(CustomersModel model)
+    {
+        var response = _customerAppServices.Create(model);
+
+        if (response == 201)
         {
-            return Ok(_repository.GetAll());
+            return Created("",$"Customer created with Id: {model.Id}");
         }
+        return BadRequest("There is already a customer with this CPF and Email");
+    }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+    [HttpPut]
+    public IActionResult Put(CustomersModel model)
+    {
+        var response = _customerAppServices.Update(model);
+
+        if (response == 200)
         {
-            var response = _repository.GetById(id);
-
-            if (response != null)
-            {
-                return Ok(response);
-            }
-            return NotFound($"Id not found: {id}");
+            return Ok();
         }
+        return NotFound($"A customer with that id was not found: {model.Id}");
+    }
 
-        [HttpPost]
-        public IActionResult Post(CustomersModel model)
+    [HttpDelete]
+    public IActionResult Delete(int id)
+    {
+        var response = _customerAppServices.Delete(id);
+
+        if (response == 200)
         {
-            var response = _repository.Create(model);
-
-            if (response == 201)
-            {
-                return Ok($"Customer created with Id: {model.Id}");
-            }
-            return BadRequest("There is already a customer with this CPF and Email");
+            return NoContent();
         }
-
-        [HttpPut]
-        public IActionResult Put(CustomersModel model)
-        {
-            var response = _repository.Update(model);
-
-            if (response == 200)
-            {
-                _repository.Update(model);
-                return Ok($"customer id was successfully changed: {model.Id}");
-            }
-            return NotFound($"A customer with that id was not found: {model.Id}");
-        }
-
-        [HttpDelete]
-        public IActionResult Delete(int id)
-        {
-            var response = _repository.Delete(id);
-
-            if (response == 200)
-            {
-                return Ok($"The customer with this Id has been deleted: {id}");
-            }
-            return NotFound($"A customer with that id was not found: {id}");
-        }
+        return NotFound($"A customer with that id was not found: {id}");
     }
 }

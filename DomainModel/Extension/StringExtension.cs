@@ -1,17 +1,23 @@
-﻿using System.Reflection;
-using WebApiCustomers.Model;
+﻿using System.Linq;
 
-namespace WebApiCustomers.Extension
+namespace DomainModel.Extension
 {
     public static class StringExtension
-    {        
+    {
         public static string CpfCorrect(this string cpf)
         {
             return cpf.Trim().Replace(".", "").Replace("-", "");
         }
 
-        public static bool CheckCpf(this string cpf)
+        public static bool CheckCpfValidate(this string cpf)
         {
+            cpf = cpf.CpfCorrect();
+            if (cpf.Length != 11)
+                return false;
+
+            if (cpf.All(c => c == cpf.First()))
+                return false;
+
             int[] multiplierOne = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplierTwo = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
 
@@ -19,11 +25,6 @@ namespace WebApiCustomers.Extension
             string Digit;
             int rest;
             int sum = 0;
-
-            cpf = cpf.Trim();
-            cpf = cpf.Replace(".", "").Replace("-", "");
-            if (cpf.Length != 11)
-                return false;
 
             temporaryCpf = cpf.Substring(0, 9);
 
@@ -50,6 +51,6 @@ namespace WebApiCustomers.Extension
             Digit = Digit + rest.ToString();
 
             return cpf.EndsWith(Digit);
-        }        
+        }
     }
 }

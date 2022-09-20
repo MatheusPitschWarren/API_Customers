@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2ADGmZthUtfT2pj0VNCp4/6ONMsRhRegUKvXIuWRZqXRuRVhNC1/n8Deje0BqO042qi0UIwRsAVjOylIW80s8w==",
+  "dgSpecHash": "942Hv9wzxNG0ve39jkXamhv8JS393UOjZR+exPvp5YoScr3WuR4yqBtnBTjYEn3tUJa2Uh43TQ4TvNXTve0Afg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\WebApiCustomers\\WebApiCustomers.csproj",
+  "projectFilePath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\WebApiCustomers\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\matheus.pitsch_warre\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
     "C:\\Users\\matheus.pitsch_warre\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
