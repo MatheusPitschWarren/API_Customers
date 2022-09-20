@@ -1,9 +1,8 @@
-﻿using System.Reflection;
-using WebApiCustomers.Model;
+﻿using WebApiCustomers.Model;
 
 namespace AppServices.AppServices
 {
-    public interface ILorota
+    public interface ICustomersAppServices
     {
         List<CustomersModel> GetAll();
         CustomersModel GetById(int id);

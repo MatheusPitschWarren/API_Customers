@@ -159,6 +159,20 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "AppServices/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "DomainServices": "1.0.0",
+          "FluentValidation.AspNetCore": "11.2.2"
+        },
+        "compile": {
+          "bin/placeholder/AppServices.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AppServices.dll": {}
+        }
+      },
       "DomainModel/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -181,20 +195,6 @@
         },
         "runtime": {
           "bin/placeholder/DomainServices.dll": {}
-        }
-      },
-      "Lorota/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "DomainServices": "1.0.0",
-          "FluentValidation.AspNetCore": "11.2.2"
-        },
-        "compile": {
-          "bin/placeholder/Lorota.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Lorota.dll": {}
         }
       }
     }
@@ -475,6 +475,11 @@
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
+    "AppServices/1.0.0": {
+      "type": "project",
+      "path": "../AppServices/AppServices.csproj",
+      "msbuildProject": "../AppServices/AppServices.csproj"
+    },
     "DomainModel/1.0.0": {
       "type": "project",
       "path": "../DomainModel/DomainModel.csproj",
@@ -484,19 +489,14 @@
       "type": "project",
       "path": "../DomainServices/DomainServices.csproj",
       "msbuildProject": "../DomainServices/DomainServices.csproj"
-    },
-    "Lorota/1.0.0": {
-      "type": "project",
-      "path": "../AppServices/Lorota.csproj",
-      "msbuildProject": "../AppServices/Lorota.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "AppServices >= 1.0.0",
       "DomainModel >= 1.0.0",
       "DomainServices >= 1.0.0",
       "FluentValidation.AspNetCore >= 11.2.2",
-      "Lorota >= 1.0.0",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
@@ -534,8 +534,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\Lorota.csproj": {
-              "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\Lorota.csproj"
+            "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\AppServices.csproj": {
+              "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\AppServices\\AppServices.csproj"
             },
             "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\DomainModel\\DomainModel.csproj": {
               "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\Cards\\DomainModel\\DomainModel.csproj"

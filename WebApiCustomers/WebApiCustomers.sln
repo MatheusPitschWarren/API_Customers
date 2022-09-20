@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel", "..\DomainMod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainServices", "..\DomainServices\DomainServices.csproj", "{88619880-EAF3-41C2-A6EC-B786E75EA2E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lorota", "..\AppServices\Lorota.csproj", "{C6B06550-B84C-41B8-AE57-F4E41359890B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppServices", "..\AppServices\AppServices.csproj", "{C6B06550-B84C-41B8-AE57-F4E41359890B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

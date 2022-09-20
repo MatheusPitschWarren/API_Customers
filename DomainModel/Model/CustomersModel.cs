@@ -1,4 +1,4 @@
-﻿using WebApiCustomers.Extension;
+﻿using DomainModel.Model;
 
 namespace WebApiCustomers.Model
 {
@@ -23,7 +23,7 @@ namespace WebApiCustomers.Model
             FullName = fullName;
             Email = email;
             EmailConfirmation = emailConfirmation;
-            Cpf = cpf.CpfCorrect();
+            Cpf = cpf;
             Cellphone = cellphone;
             DateOfBirth = dateOfBirth;
             EmailSms = emailSms;

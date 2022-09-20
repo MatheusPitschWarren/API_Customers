@@ -1,3 +1,4 @@
+using DomainServices.Services;
 using WebApiCustomers.Model;
 
 namespace WebApiCustomers.Services
