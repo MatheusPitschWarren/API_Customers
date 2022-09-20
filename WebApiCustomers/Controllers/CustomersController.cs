@@ -22,7 +22,7 @@ namespace WebApiCustomers.Controllers
             return Ok(_repository.GetAll());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public IActionResult GetById(int id)
         {
             var response = _repository.GetById(id);
