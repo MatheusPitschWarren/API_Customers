@@ -47,8 +47,12 @@ public class CustomerServices : ICustomerServices
 
         if (!checkDuplicateUpdate(model))
         {
-            var index = _customersList.FindIndex(x => x.Id == model.Id);
+            var index = _customersList.FindIndex(customer => customer.Id == model.Id);
 
+            if (index == -1)
+            {
+                return false;
+            }
             model.Id = _customersList[index].Id;
 
             _customersList[index] = model;
@@ -76,6 +80,6 @@ public class CustomerServices : ICustomerServices
     }
     public bool checkDuplicateUpdate(Customer model)
     {
-        return _customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email);
+        return _customersList.Any(customer => (customer.Cpf == model.Cpf || customer.Email == model.Email) && customer.Id != model.Id); ;
     }
 }

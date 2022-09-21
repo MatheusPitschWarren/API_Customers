@@ -28,11 +28,11 @@ public class CustomersController : Controller
     {
         var response = _customerAppServices.GetById(id);
 
-        if (response != null)
+        if (response == null)
         {
-            return Ok(response);
+            return NotFound($"Id not found: {id}");
         }
-        return NotFound($"Id not found: {id}");
+        return Ok(response);
     }
 
     [HttpPost]
