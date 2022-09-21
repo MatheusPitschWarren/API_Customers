@@ -15,12 +15,12 @@ public class CustomersAppServices : ICustomersAppServices
         _customerServices = baseServices ?? throw new ArgumentNullException(nameof(baseServices));
     }
 
-    public int Create(CustomersModel model)
+    public bool Create(CustomersModel model)
     {
         return _customerServices.Create(model);
     }
 
-    public int Delete(long id)
+    public bool Delete(long id)
     {
         return _customerServices.Delete(id);
     }
@@ -35,7 +35,7 @@ public class CustomersAppServices : ICustomersAppServices
         return _customerServices.GetById(id);
     }
 
-    public int Update(CustomersModel model)
+    public bool Update(CustomersModel model)
     {
         return _customerServices.Update(model);
     }        

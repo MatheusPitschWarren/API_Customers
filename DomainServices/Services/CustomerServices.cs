@@ -21,50 +21,50 @@ public class CustomerServices : ICustomerServices
         return customer;
     }
 
-    public int Create(CustomersModel model)
+    public bool Create(CustomersModel model)
     {
         model.Id = _customersList.LastOrDefault()?.Id + 1 ?? 1;
 
         if (!_customersList.Any())
         {
             _customersList.Add(model);
-            return 201;
+            return true;
         }
         if (!checkDuplicate(model))
         {
             _customersList.Add(model);
-            return 201;
+            return true;
         }
-        return 409;
+        return false;
     }
 
-    public int Update(CustomersModel model)
+    public bool Update(CustomersModel model)
     {
         var updateCustomer = GetById(model.Id);
 
         if (updateCustomer == null)
-            return 404;
+            return false;
 
         if (!checkDuplicate(model))
         {
             var index = _customersList.IndexOf(updateCustomer);
 
             _customersList[index] = model;
-            return 200;
+            return true;
         }
-        return 404;
+        return false;
     }
 
-    public int Delete(long id)
+    public bool Delete(long id)
     {
         var deleteCustomer = GetById(id);
 
         if (deleteCustomer == null)
         {
-            return 404;
+            return false;
         }
         _customersList.Remove(deleteCustomer);
-        return 200;
+        return true;
     }
 
     public bool checkDuplicate(CustomersModel model)

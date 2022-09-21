@@ -1,12 +1,9 @@
-﻿using System.Linq;
+﻿namespace DomainModel.Extension;
 
-namespace DomainModel.Extension
+public static class StringExtension
 {
-    public static class StringExtension
+    public static string CpfCorrect(this string cpf)
     {
-        public static string CpfCorrect(this string cpf)
-        {
-            return cpf.Trim().Replace(".", "").Replace("-", "");
-        }        
-    }
+        return cpf.Trim().Replace(".", "").Replace("-", "");
+    }        
 }

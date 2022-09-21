@@ -21,7 +21,7 @@ public class CustomerValidator : AbstractValidator<CustomersModel>
 
         RuleFor(c => c.Cpf)
             .NotEmpty()
-            .Must(c => c.CheckCpfValidate())
+            .Must(CheckCpf)
                 .WithMessage("Cpf is not invalid");
 
         RuleFor(c => c.Cellphone)

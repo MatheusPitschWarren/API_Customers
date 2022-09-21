@@ -20,8 +20,6 @@ builder.Services.AddTransient<ICustomersAppServices, CustomersAppServices>();
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddScoped<IValidator<CustomersModel>,CustomerValidator>();
 
-
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
