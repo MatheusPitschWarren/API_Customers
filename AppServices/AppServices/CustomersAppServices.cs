@@ -15,7 +15,7 @@ public class CustomersAppServices : ICustomersAppServices
         _customerServices = baseServices ?? throw new ArgumentNullException(nameof(baseServices));
     }
 
-    public bool Create(Customer model)
+    public int Create(Customer model)
     {
         return _customerServices.Create(model);
     }

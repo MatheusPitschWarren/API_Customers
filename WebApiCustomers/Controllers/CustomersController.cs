@@ -40,11 +40,17 @@ public class CustomersController : Controller
     {
         var response = _customerAppServices.Create(model);
 
-        if (response)
+        switch (response)
         {
-            return Created("", $"Customer created with Id: {model.Id}");
+            case 0:
+                return Created("", $"Customer created with Id: {model.Id}");
+            case 1:
+                return BadRequest($"There is already a customer with this CPF: {model.Cpf}.");
+            case 2:
+                return BadRequest($"There is already a customer with this Email: {model.Email}");
+            default:
+                return BadRequest(response);
         }
-        return BadRequest($"There is already a customer with this CPF: {model.Cpf} and Email: {model.Email}");
     }
 
     [HttpPut("{id}")]

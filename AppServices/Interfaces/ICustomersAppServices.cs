@@ -7,7 +7,7 @@ public interface ICustomersAppServices
 {
     IEnumerable<Customer> GetAll();
     Customer GetById(long id);
-    bool Create(Customer model);
+    int Create(Customer model);
     bool Update(Customer model);
     bool Delete(long id);
 }

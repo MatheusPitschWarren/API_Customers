@@ -21,21 +21,24 @@ public class CustomerServices : ICustomerServices
         return customer;
     }
 
-    public bool Create(Customer model)
+    public int Create(Customer model)
     {
         model.Id = _customersList.LastOrDefault()?.Id + 1 ?? 1;
 
         if (!_customersList.Any())
         {
             _customersList.Add(model);
-            return true;
+            return 0;
         }
-        if (!checkDuplicateCreate(model))
-        {
-            _customersList.Add(model);
-            return true;
-        }
-        return false;
+
+        var cpfRepete = _customersList.Any(customer => customer.Cpf == model.Cpf);
+        var emailRepete = _customersList.Any(customer => customer.Email == model.Email);
+
+        if (cpfRepete) return 1;
+        if (emailRepete) return 2;
+
+        _customersList.Add(model);
+        return 0;
     }
 
     public bool Update(Customer model)
@@ -65,7 +68,7 @@ public class CustomerServices : ICustomerServices
     {
         var deleteCustomer = GetById(id);
 
-        if (deleteCustomer == null) return false;        
+        if (deleteCustomer == null) return false;
         _customersList.Remove(deleteCustomer);
         return true;
     }
@@ -75,6 +78,7 @@ public class CustomerServices : ICustomerServices
         return _customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email);
 
     }
+
     public bool checkDuplicateUpdate(Customer model)
     {
         return _customersList.Any(customer => (customer.Cpf == model.Cpf || customer.Email == model.Email) && customer.Id != model.Id); ;
