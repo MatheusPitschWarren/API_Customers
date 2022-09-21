@@ -39,7 +39,7 @@ namespace WebApiCustomers.Controllers
         {
             var response = _repository.Create(model);
 
-            if (response == 201)
+            if (response)
             {
                 return Ok($"Customer created with Id: {model.Id}");
             }
@@ -51,7 +51,7 @@ namespace WebApiCustomers.Controllers
         {
             var response = _repository.Update(model);
 
-            if (response == 200)
+            if (response)
             {
                 _repository.Update(model);
                 return Ok($"customer id was successfully changed: {model.Id}");
@@ -60,11 +60,11 @@ namespace WebApiCustomers.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(long id)
         {
             var response = _repository.Delete(id);
 
-            if (response == 200)
+            if (response)
             {
                 return Ok($"The customer with this Id has been deleted: {id}");
             }

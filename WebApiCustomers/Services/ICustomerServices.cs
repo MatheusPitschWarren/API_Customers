@@ -5,11 +5,11 @@ namespace WebApiCustomers.Services
 {
     public interface ICustomerServices
     {
-        int Create(CustomersModel model);
-        int Delete(long id);
+        bool Create(CustomersModel model);
+        bool Delete(long id);
         List<CustomersModel> GetAll();
         CustomersModel GetById(long id);
-        int Update(CustomersModel model);
+        bool Update(CustomersModel model);
         bool checkDuplicate(CustomersModel model);               
     }
 }

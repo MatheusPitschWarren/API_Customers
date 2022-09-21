@@ -19,50 +19,50 @@ namespace WebApiCustomers.Services
             return customer;
         }
 
-        public int Create(CustomersModel model)
+        public bool Create(CustomersModel model)
         {
             model.Id = _customersList.LastOrDefault()?.Id + 1 ?? 1;
 
             if (!_customersList.Any())
             {
                 _customersList.Add(model);
-                return 201;
+                return true;
             }
             if (!checkDuplicate(model))
             {
                 _customersList.Add(model);
-                return 201;
+                return true;
             }
-            return 409;
+            return false;
         }
 
-        public int Update(CustomersModel model)
+        public bool Update(CustomersModel model)
         {
             var updateModel = GetById(model.Id);
 
             if (updateModel == null)
-                return 404;
+                return false;
 
-            if (!checkDuplicate(model))
+            if (checkDuplicate(model))
             {
                 var index = _customersList.IndexOf(updateModel);
 
                 _customersList[index] = model;
-                return 200;
+                return true;
             }
-            return 404;
+            return false;
         }
 
-        public int Delete(long id)
+        public bool Delete(long id)
         {
             var customer = GetById(id);
 
             if (customer == null)
             {
-                return 404;
+                return false;
             }
             _customersList.Remove(customer);
-            return 200;
+            return true;
         }
 
         public bool checkDuplicate(CustomersModel model)
