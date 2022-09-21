@@ -44,10 +44,10 @@ public class CustomersController : Controller
         {
             return Created("", $"Customer created with Id: {model.Id}");
         }
-        return BadRequest("There is already a customer with this CPF and Email");
+        return BadRequest($"There is already a customer with this CPF: {model.Cpf} and Email: {model.Email}");
     }
 
-    [HttpPut]
+    [HttpPut("{id}")]
     public IActionResult Put(Customer model)
     {
         var response = _customerAppServices.Update(model);

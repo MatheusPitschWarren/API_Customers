@@ -65,10 +65,7 @@ public class CustomerServices : ICustomerServices
     {
         var deleteCustomer = GetById(id);
 
-        if (deleteCustomer == null)
-        {
-            return false;
-        }
+        if (deleteCustomer == null) return false;        
         _customersList.Remove(deleteCustomer);
         return true;
     }

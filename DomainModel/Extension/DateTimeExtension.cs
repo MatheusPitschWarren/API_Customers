@@ -6,10 +6,11 @@ public static class DateTimeExtension
 {
     public static bool checkEighteenMore(this DateTime date)
     {
-        if (date.Year - DateTime.Now.Year >= 18)
-        {
-            return true;
-        }
+        if (DateTime.Now.Year - date.Year >= 18)
+            if (DateTime.Now.DayOfYear - date.DayOfYear >= 0)
+            {
+                return true;
+            }
         return false;
     }
 }

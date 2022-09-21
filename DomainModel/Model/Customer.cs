@@ -46,7 +46,7 @@ public class Customer : IEntity
     public string PostalCode { get; set; }
     public string Address { get; set; }
     public int Number { get; set; }
-    public long Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public long Id { get; set; }
     public bool EmailSms { get; set; }
     public bool Whatsapp { get; set; }
     public DateTime DateOfBirth { get; set; }
