@@ -1,5 +1,6 @@
 ﻿using AppServices.Interfaces;
 using DomainModel.Model;
+using DomainServices.Expections;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -26,54 +27,57 @@ public class CustomersController : Controller
     [HttpGet("{id}")]
     public IActionResult GetById(long id)
     {
-        var response = _customerAppServices.GetById(id);
-
-        if (response == null) return NotFound($"Id not found: {id}");
-        
-        return Ok(response);
+        try
+        {
+            var response = _customerAppServices.GetById(id);
+            return Ok(response);
+        }
+        catch (GenericNotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
     }
 
     [HttpPost]
     public IActionResult Post(Customer model)
     {
-        var response = _customerAppServices.Create(model);
-
-        switch (response)
+        try
         {
-            case 0:
-                return Created("", model.Id);
-            case 1:
-                return BadRequest($"There is already a customer with this CPF: {model.Cpf}.");
-            case 2:
-                return BadRequest($"There is already a customer with this Email: {model.Email}");
-            case 3:
-                return BadRequest(response);
-            default:
-                return BadRequest();
+            var response = _customerAppServices.Create(model);
+            return Created("", response);
+        }
+        catch (GenericNotFoundException e)
+        {
+            return BadRequest(e.Message);
         }
     }
 
     [HttpPut("{id}")]
     public IActionResult Put(long id, Customer model)
     {
-        model.Id = id;
-        var response = _customerAppServices.Update(model);
-
-        if (response)
+        try
         {
-            _customerAppServices.Update(model);
+            model.Id = id;
+            var response = _customerAppServices.Update(model);
             return Ok();
         }
-        return NotFound($"A customer with that id was not found: {model.Id}");
+        catch (GenericNotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
     }
 
     [HttpDelete]
     public IActionResult Delete(long id)
     {
-        var response = _customerAppServices.Delete(id);
-
-        if (response) return NoContent();
-        
-        return NotFound($"A customer with that id was not found: {id}");
+        try
+        {
+            var response = _customerAppServices.Delete(id);
+            return NoContent();
+        }
+        catch (GenericNotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
     }
 }

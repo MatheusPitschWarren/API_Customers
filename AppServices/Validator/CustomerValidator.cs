@@ -58,6 +58,7 @@ public class CustomerValidator : AbstractValidator<Customer>
             .NotEmpty()
             .GreaterThan(0);        
     }
+
     private bool CheckCpf(string cpf)
     {
         int[] multiplierOne = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };

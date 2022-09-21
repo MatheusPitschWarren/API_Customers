@@ -20,7 +20,7 @@ public class Customer : IEntity
         string postalCode,
         string address,
         int number
-        )
+    )
     {
         FullName = fullName;
         Email = email;
@@ -36,6 +36,7 @@ public class Customer : IEntity
         Address = address;
         Number = number;
     }
+
     public string FullName { get; set; }
     public string Email { get; set; }
     public string EmailConfirmation { get; set; }

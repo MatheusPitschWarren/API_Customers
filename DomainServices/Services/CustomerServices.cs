@@ -1,4 +1,5 @@
 using DomainModel.Model;
+using DomainServices.Expections;
 using DomainServices.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,30 +19,19 @@ public class CustomerServices : ICustomerServices
     {
         var customer = _customersList.FirstOrDefault(customer => customer.Id == id);
 
+        if (customer == null) throw new GenericNotFoundException($"Custmer for Id: {id} not found");        
+
         return customer;
     }
 
-    public int Create(Customer model)
+    public long Create(Customer model)
     {
         model.Id = _customersList.LastOrDefault()?.Id + 1 ?? 1;
 
-        if (!_customersList.Any())
-        {
-            _customersList.Add(model);
-            return 0;
-        }
+        CheckIfUserIsValid(model);
+        _customersList.Add(model);
 
-        switch (checkDuplicate(model))
-        {
-            case 0:
-                _customersList.Add(model);
-                return 0;
-            case 1:
-                return 1;
-            case 2:
-                return 2;            
-        }
-        return 3;
+        return model.Id;
     }
 
     public bool Update(Customer model)
@@ -50,32 +40,32 @@ public class CustomerServices : ICustomerServices
 
         if (updateCustomer == null) return false;
 
-        if (checkDuplicate(model) == 0)
-        {
-            var index = _customersList.FindIndex(customer => customer.Id == model.Id);
+        CheckIfUserIsValid(model);
 
-            if (index == -1) return false;
+        var index = _customersList.FindIndex(customer => customer.Id == model.Id);
 
-            _customersList[index] = model;
-            return true;
-        }
-        return false;
+        if (index == -1) throw new GenericNotFoundException ($"A customer with that id was not found: {model.Id}");
+
+        _customersList[index] = model;
+        return true;       
     }
 
     public bool Delete(long id)
     {
         var deleteCustomer = GetById(id);
 
-        if (deleteCustomer == null) return false;
-
         _customersList.Remove(deleteCustomer);
         return true;
     }
 
-    private int checkDuplicate(Customer model)
+    private bool CheckIfUserIsValid(Customer model)
     {
-        if (_customersList.Any(customer => (customer.Cpf == model.Cpf) && customer.Id != model.Id)) return 1;
-        if (_customersList.Any(customer => (customer.Email == model.Email) && customer.Id != model.Id)) return 2;
-        return 0;
+        if (_customersList.Any(customer => (customer.Cpf == model.Cpf) && customer.Id != model.Id))
+            throw new GenericNotFoundException($"There is already a customer with this CPF: {model.Cpf}.");
+        
+        if (_customersList.Any(customer => (customer.Email == model.Email) && customer.Id != model.Id))
+            throw new GenericNotFoundException($"There is already a customer with this Email: {model.Email}");
+
+        return true;
     }
 }
