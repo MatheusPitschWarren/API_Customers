@@ -52,22 +52,24 @@ public class CustomersController : Controller
     {
         var response = _customerAppServices.Update(model);
 
-        if (response == 200)
-        {
-            return Ok();
+            if (response)
+            {
+                _repository.Update(model);
+                return Ok($"customer id was successfully changed: {model.Id}");
+            }
+            return NotFound($"A customer with that id was not found: {model.Id}");
         }
-        return NotFound($"A customer with that id was not found: {model.Id}");
-    }
 
-    [HttpDelete]
-    public IActionResult Delete(int id)
-    {
-        var response = _customerAppServices.Delete(id);
-
-        if (response == 200)
+        [HttpDelete]
+        public IActionResult Delete(long id)
         {
-            return NoContent();
+            var response = _repository.Delete(id);
+
+            if (response)
+            {
+                return Ok($"The customer with this Id has been deleted: {id}");
+            }
+            return NotFound($"A customer with that id was not found: {id}");
         }
-        return NotFound($"A customer with that id was not found: {id}");
     }
 }
