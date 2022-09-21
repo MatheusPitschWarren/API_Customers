@@ -35,8 +35,8 @@ public class CustomersAppServices : ICustomersAppServices
         return _customerServices.GetById(id);
     }
 
-    public bool Update(Customer model)
+    public bool Update(long id, Customer model)
     {
-        return _customerServices.Update(model);
+        return _customerServices.Update(id, model);
     }        
 }

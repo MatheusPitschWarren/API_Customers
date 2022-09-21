@@ -41,19 +41,17 @@ public class CustomerServices : ICustomerServices
         return 0;
     }
 
-    public bool Update(Customer model)
-    {
-        var updateCustomer = GetById(model.Id);
+    public bool Update(long id, Customer model)
+    {        
+        var updateCustomer = GetById(id);
 
         if (updateCustomer == null) return false;
 
         if (!checkDuplicateUpdate(model))
         {
-            var index = _customersList.FindIndex(customer => customer.Id == model.Id);
+            var index = _customersList.FindIndex(customer => customer.Id == id);
 
-            if (index == -1) return false;
-
-            model.Id = _customersList[index].Id;
+            if (index == -1) return false;            
 
             _customersList[index] = model;
             return true;

@@ -52,13 +52,13 @@ public class CustomersController : Controller
     }
 
     [HttpPut("{id}")]
-    public IActionResult Put(Customer model)
+    public IActionResult Put(long id, Customer model)
     {
-        var response = _customerAppServices.Update(model);
+        var response = _customerAppServices.Update(id, model);
 
         if (response)
         {
-            _customerAppServices.Update(model);
+            _customerAppServices.Update(id,model);
             return Ok($"customer id was successfully changed: {model.Id}");
         }
         return NotFound($"A customer with that id was not found: {model.Id}");
