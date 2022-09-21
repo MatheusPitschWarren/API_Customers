@@ -187,8 +187,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "DomainModel": "1.0.0",
-          "FluentValidation.AspNetCore": "11.2.2"
+          "DomainModel": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DomainServices.dll": {}

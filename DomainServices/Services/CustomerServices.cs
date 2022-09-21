@@ -7,21 +7,21 @@ namespace DomainServices.Services;
 
 public class CustomerServices : ICustomerServices
 {
-    private readonly List<CustomersModel> _customersList = new();
+    private readonly List<Customer> _customersList = new();
 
-    public IEnumerable<CustomersModel> GetAll()
+    public IEnumerable<Customer> GetAll()
     {
         return _customersList;
     }
 
-    public CustomersModel GetById(long id)
+    public Customer GetById(long id)
     {
         var customer = _customersList.FirstOrDefault(customer => customer.Id == id);
 
         return customer;
     }
 
-    public bool Create(CustomersModel model)
+    public bool Create(Customer model)
     {
         model.Id = _customersList.LastOrDefault()?.Id + 1 ?? 1;
 
@@ -38,7 +38,7 @@ public class CustomerServices : ICustomerServices
         return false;
     }
 
-    public bool Update(CustomersModel model)
+    public bool Update(Customer model)
     {
         var updateCustomer = GetById(model.Id);
 
@@ -67,7 +67,7 @@ public class CustomerServices : ICustomerServices
         return true;
     }
 
-    public bool checkDuplicate(CustomersModel model)
+    public bool checkDuplicate(Customer model)
     {
         if (_customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email))
         {

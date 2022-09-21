@@ -36,7 +36,7 @@ public class CustomersController : Controller
     }
 
     [HttpPost]
-    public IActionResult Post(CustomersModel model)
+    public IActionResult Post(Customer model)
     {
         var response = _customerAppServices.Create(model);
 
@@ -48,7 +48,7 @@ public class CustomersController : Controller
     }
 
     [HttpPut]
-    public IActionResult Put(CustomersModel model)
+    public IActionResult Put(Customer model)
     {
         var response = _customerAppServices.Update(model);
 

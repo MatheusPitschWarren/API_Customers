@@ -15,7 +15,7 @@ public class CustomersAppServices : ICustomersAppServices
         _customerServices = baseServices ?? throw new ArgumentNullException(nameof(baseServices));
     }
 
-    public bool Create(CustomersModel model)
+    public bool Create(Customer model)
     {
         return _customerServices.Create(model);
     }
@@ -25,17 +25,17 @@ public class CustomersAppServices : ICustomersAppServices
         return _customerServices.Delete(id);
     }
 
-    public IEnumerable<CustomersModel> GetAll()
+    public IEnumerable<Customer> GetAll()
     {
         return _customerServices.GetAll();
     }
 
-    public CustomersModel GetById(long id)
+    public Customer GetById(long id)
     {
         return _customerServices.GetById(id);
     }
 
-    public bool Update(CustomersModel model)
+    public bool Update(Customer model)
     {
         return _customerServices.Update(model);
     }        

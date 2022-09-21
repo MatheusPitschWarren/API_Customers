@@ -5,9 +5,9 @@ namespace AppServices.Interfaces;
 
 public interface ICustomersAppServices
 {
-    IEnumerable<CustomersModel> GetAll();
-    CustomersModel GetById(long id);
-    bool Create(CustomersModel model);
-    bool Update(CustomersModel model);
+    IEnumerable<Customer> GetAll();
+    Customer GetById(long id);
+    bool Create(Customer model);
+    bool Update(Customer model);
     bool Delete(long id);
 }

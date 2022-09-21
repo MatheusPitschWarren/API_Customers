@@ -5,7 +5,7 @@ using FluentValidation.Validators;
 
 namespace AppServices.Validator;
 
-public class CustomerValidator : AbstractValidator<CustomersModel>
+public class CustomerValidator : AbstractValidator<Customer>
 {
     public CustomerValidator()
     {

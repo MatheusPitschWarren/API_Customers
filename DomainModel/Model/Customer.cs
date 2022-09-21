@@ -1,11 +1,12 @@
 ﻿using DomainModel.Extension;
+using DomainModel.Interface;
 using System;
 
 namespace DomainModel.Model;
 
-public class CustomersModel : BaseModel
+public class Customer : IEntity
 {
-    public CustomersModel(
+    public Customer(
         string fullName,
         string email,
         string emailConfirmation,
@@ -45,6 +46,7 @@ public class CustomersModel : BaseModel
     public string PostalCode { get; set; }
     public string Address { get; set; }
     public int Number { get; set; }
+    public long Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public bool EmailSms { get; set; }
     public bool Whatsapp { get; set; }
     public DateTime DateOfBirth { get; set; }
