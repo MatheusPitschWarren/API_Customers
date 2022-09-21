@@ -71,10 +71,8 @@ public class CustomersController : Controller
     {
         var response = _customerAppServices.Delete(id);
 
-        if (response)
-        {
-            return Ok($"The customer with this Id has been deleted: {id}");
-        }
+        if (response) return Ok($"The customer with this Id has been deleted: {id}");
+        
         return NotFound($"A customer with that id was not found: {id}");
     }
 }

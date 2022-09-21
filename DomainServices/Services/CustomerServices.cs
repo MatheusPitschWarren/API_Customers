@@ -45,8 +45,7 @@ public class CustomerServices : ICustomerServices
     {
         var updateCustomer = GetById(model.Id);
 
-        if (updateCustomer == null)
-            return false;
+        if (updateCustomer == null) return false;
 
         if (!checkDuplicateUpdate(model))
         {
@@ -69,14 +68,9 @@ public class CustomerServices : ICustomerServices
         var deleteCustomer = GetById(id);
 
         if (deleteCustomer == null) return false;
+
         _customersList.Remove(deleteCustomer);
         return true;
-    }
-
-    public bool checkDuplicateCreate(Customer model)
-    {
-        return _customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email);
-
     }
 
     public bool checkDuplicateUpdate(Customer model)
