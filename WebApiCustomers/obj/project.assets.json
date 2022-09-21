@@ -493,8 +493,6 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "AppServices >= 1.0.0",
-      "DomainModel >= 1.0.0",
-      "DomainServices >= 1.0.0",
       "FluentValidation.AspNetCore >= 11.2.2",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
@@ -535,12 +533,6 @@
           "projectReferences": {
             "C:\\Users\\matheus.pitsch_warre\\Desktop\\API_Customers\\AppServices\\AppServices.csproj": {
               "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\API_Customers\\AppServices\\AppServices.csproj"
-            },
-            "C:\\Users\\matheus.pitsch_warre\\Desktop\\API_Customers\\DomainModel\\DomainModel.csproj": {
-              "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\API_Customers\\DomainModel\\DomainModel.csproj"
-            },
-            "C:\\Users\\matheus.pitsch_warre\\Desktop\\API_Customers\\DomainServices\\DomainServices.csproj": {
-              "projectPath": "C:\\Users\\matheus.pitsch_warre\\Desktop\\API_Customers\\DomainServices\\DomainServices.csproj"
             }
           }
         }

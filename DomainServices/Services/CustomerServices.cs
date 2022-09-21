@@ -30,7 +30,7 @@ public class CustomerServices : ICustomerServices
             _customersList.Add(model);
             return true;
         }
-        if (!checkDuplicate(model))
+        if (!checkDuplicateCreate(model))
         {
             _customersList.Add(model);
             return true;
@@ -45,9 +45,11 @@ public class CustomerServices : ICustomerServices
         if (updateCustomer == null)
             return false;
 
-        if (!checkDuplicate(model))
+        if (!checkDuplicateUpdate(model))
         {
-            var index = _customersList.IndexOf(updateCustomer);
+            var index = _customersList.FindIndex(x => x.Id == model.Id);
+
+            model.Id = _customersList[index].Id;
 
             _customersList[index] = model;
             return true;
@@ -67,12 +69,13 @@ public class CustomerServices : ICustomerServices
         return true;
     }
 
-    public bool checkDuplicate(Customer model)
+    public bool checkDuplicateCreate(Customer model)
     {
-        if (_customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email))
-        {
-            return true;
-        }
-        return false;
+        return _customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email);
+
+    }
+    public bool checkDuplicateUpdate(Customer model)
+    {
+        return _customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email);
     }
 }
