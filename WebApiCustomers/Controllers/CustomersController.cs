@@ -46,8 +46,10 @@ public class CustomersController : Controller
                 return BadRequest($"There is already a customer with this CPF: {model.Cpf}.");
             case 2:
                 return BadRequest($"There is already a customer with this Email: {model.Email}");
-            default:
+            case 3:
                 return BadRequest(response);
+            default:
+                return BadRequest();
         }
     }
 
@@ -70,7 +72,7 @@ public class CustomersController : Controller
     {
         var response = _customerAppServices.Delete(id);
 
-        if (response) return Ok($"The customer with this Id has been deleted: {id}");
+        if (response) return NoContent();
         
         return NotFound($"A customer with that id was not found: {id}");
     }
