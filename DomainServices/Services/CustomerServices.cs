@@ -69,10 +69,6 @@ public class CustomerServices : ICustomerServices
 
     public bool checkDuplicate(CustomersModel model)
     {
-        if (_customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email))
-        {
-            return true;
-        }
-        return false;
+        return _customersList.Any(customer => customer.Cpf == model.Cpf || customer.Email == model.Email);
     }
 }
