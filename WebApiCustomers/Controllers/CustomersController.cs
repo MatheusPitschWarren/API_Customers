@@ -41,7 +41,7 @@ namespace WebApiCustomers.Controllers
 
             if (response)
             {
-                return Ok($"Customer created with Id: {model.Id}");
+                return Created("",$"Customer created with Id: {model.Id}");
             }
             return BadRequest("There is already a customer with this CPF and Email");
         }
