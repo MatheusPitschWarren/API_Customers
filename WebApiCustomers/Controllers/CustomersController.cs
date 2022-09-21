@@ -28,10 +28,8 @@ public class CustomersController : Controller
     {
         var response = _customerAppServices.GetById(id);
 
-        if (response == null)
-        {
-            return NotFound($"Id not found: {id}");
-        }
+        if (response == null) return NotFound($"Id not found: {id}");
+        
         return Ok(response);
     }
 

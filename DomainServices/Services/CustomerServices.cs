@@ -51,10 +51,8 @@ public class CustomerServices : ICustomerServices
         {
             var index = _customersList.FindIndex(customer => customer.Id == model.Id);
 
-            if (index == -1)
-            {
-                return false;
-            }
+            if (index == -1) return false;
+
             model.Id = _customersList[index].Id;
 
             _customersList[index] = model;

@@ -32,7 +32,7 @@ public class CustomerValidator : AbstractValidator<Customer>
         RuleFor(c => c.DateOfBirth)
             .NotEmpty()
             .Must(c => c.checkEighteenMore())
-                .WithMessage("Date Of Birth must not be null or empty and can't have a date greater than today");
+                .WithMessage("Customer must be of greater");
 
         RuleFor(c => c.Country)
             .NotEmpty()
