@@ -41,7 +41,7 @@ public class CustomersController : Controller
         switch (response)
         {
             case 0:
-                return Created("", $"Customer created with Id: {model.Id}");
+                return Created("", model.Id);
             case 1:
                 return BadRequest($"There is already a customer with this CPF: {model.Cpf}.");
             case 2:
@@ -54,12 +54,13 @@ public class CustomersController : Controller
     [HttpPut("{id}")]
     public IActionResult Put(long id, Customer model)
     {
-        var response = _customerAppServices.Update(id, model);
+        model.Id = id;
+        var response = _customerAppServices.Update(model);
 
         if (response)
         {
-            _customerAppServices.Update(id,model);
-            return Ok($"customer id was successfully changed: {model.Id}");
+            _customerAppServices.Update(model);
+            return Ok();
         }
         return NotFound($"A customer with that id was not found: {model.Id}");
     }
