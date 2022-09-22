@@ -20,9 +20,9 @@ public class CustomersAppServices : ICustomersAppServices
         return _customerServices.Create(model);
     }
 
-    public bool Delete(long id)
+    public void Delete(long id)
     {
-        return _customerServices.Delete(id);
+        _customerServices.Delete(id);
     }
 
     public IEnumerable<Customer> GetAll()
@@ -38,5 +38,5 @@ public class CustomersAppServices : ICustomersAppServices
     public bool Update(Customer model)
     {
         return _customerServices.Update(model);
-    }        
+    }
 }

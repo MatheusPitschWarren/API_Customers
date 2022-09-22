@@ -1,6 +1,7 @@
 using DomainModel.Model;
 using DomainServices.Expections;
 using DomainServices.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,7 +20,7 @@ public class CustomerServices : ICustomerServices
     {
         var customer = _customersList.FirstOrDefault(customer => customer.Id == id);
 
-        if (customer == null) throw new GenericNotFoundException($"Custmer for Id: {id} not found");        
+        if (customer == null) throw new NotFoundException($"Custmer with Id: {id} not found");
 
         return customer;
     }
@@ -44,28 +45,25 @@ public class CustomerServices : ICustomerServices
 
         var index = _customersList.FindIndex(customer => customer.Id == model.Id);
 
-        if (index == -1) throw new GenericNotFoundException ($"A customer with that id was not found: {model.Id}");
+        if (index == -1) throw new NotFoundException($"A customer with that id was not found: {model.Id}");
 
         _customersList[index] = model;
-        return true;       
+        return true;
     }
 
-    public bool Delete(long id)
+    public void Delete(long id)
     {
         var deleteCustomer = GetById(id);
 
-        _customersList.Remove(deleteCustomer);
-        return true;
+        _customersList.Remove(deleteCustomer);        
     }
 
-    private bool CheckIfUserIsValid(Customer model)
+    private void CheckIfUserIsValid(Customer model)
     {
         if (_customersList.Any(customer => (customer.Cpf == model.Cpf) && customer.Id != model.Id))
-            throw new GenericNotFoundException($"There is already a customer with this CPF: {model.Cpf}.");
-        
-        if (_customersList.Any(customer => (customer.Email == model.Email) && customer.Id != model.Id))
-            throw new GenericNotFoundException($"There is already a customer with this Email: {model.Email}");
+            throw new NotFoundException($"There is already a customer with this CPF: {model.Cpf}.");
 
-        return true;
+        if(_customersList.Any(customer => (customer.Email == model.Email) && customer.Id != model.Id))
+            throw new NotFoundException($"There is already a customer with this Email: {model.Email}");        
     }
 }

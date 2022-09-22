@@ -9,5 +9,5 @@ public interface ICustomersAppServices
     Customer GetById(long id);
     long Create(Customer model);
     bool Update(Customer model);
-    bool Delete(long id);
+    void Delete(long id);
 }

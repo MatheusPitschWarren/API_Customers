@@ -32,7 +32,7 @@ public class CustomersController : Controller
             var response = _customerAppServices.GetById(id);
             return Ok(response);
         }
-        catch (GenericNotFoundException e)
+        catch (NotFoundException e)
         {
             return NotFound(e.Message);
         }
@@ -46,7 +46,7 @@ public class CustomersController : Controller
             var response = _customerAppServices.Create(model);
             return Created("", response);
         }
-        catch (GenericNotFoundException e)
+        catch (NotFoundException e)
         {
             return BadRequest(e.Message);
         }
@@ -61,7 +61,7 @@ public class CustomersController : Controller
             var response = _customerAppServices.Update(model);
             return Ok();
         }
-        catch (GenericNotFoundException e)
+        catch (NotFoundException e)
         {
             return NotFound(e.Message);
         }
@@ -72,10 +72,10 @@ public class CustomersController : Controller
     {
         try
         {
-            var response = _customerAppServices.Delete(id);
+            _customerAppServices.Delete(id);
             return NoContent();
         }
-        catch (GenericNotFoundException e)
+        catch (NotFoundException e)
         {
             return NotFound(e.Message);
         }
