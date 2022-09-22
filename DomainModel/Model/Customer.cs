@@ -25,7 +25,7 @@ public class Customer : IEntity
         FullName = fullName;
         Email = email;
         EmailConfirmation = emailConfirmation;
-        Cpf = cpf.CpfCorrect();
+        Cpf = cpf.CPFFormatter();
         Cellphone = cellphone;
         DateOfBirth = dateOfBirth;
         EmailSms = emailSms;

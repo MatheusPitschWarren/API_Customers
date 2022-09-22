@@ -2,7 +2,7 @@
 
 public static class StringExtension
 {
-    public static string CpfCorrect(this string cpf)
+    public static string CPFFormatter(this string cpf)
     {
         return cpf.Trim().Replace(".", "").Replace("-", "");
     }        

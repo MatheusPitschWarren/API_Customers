@@ -31,7 +31,7 @@ public class CustomerValidator : AbstractValidator<Customer>
 
         RuleFor(c => c.DateOfBirth)
             .NotEmpty()
-            .Must(c => c.checkEighteenMore())
+            .Must(c => c.VerificationThatYouAreOfLegalAge())
                 .WithMessage("Customer must be of greater");
 
         RuleFor(c => c.Country)
