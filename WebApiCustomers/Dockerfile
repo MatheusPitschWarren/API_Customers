@@ -9,16 +9,19 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["WebApiCustomers.csproj", "."]
-RUN dotnet restore "./WebApiCustomers.csproj"
+COPY ["WebApiCustomers/API.csproj", "WebApiCustomers/"]
+COPY ["AppServices/AppServices.csproj", "AppServices/"]
+COPY ["DomainModel/DomainModel.csproj", "DomainModel/"]
+COPY ["DomainServices/DomainServices.csproj", "DomainServices/"]
+RUN dotnet restore "WebApiCustomers/API.csproj"
 COPY . .
-WORKDIR "/src/."
-RUN dotnet build "WebApiCustomers.csproj" -c Release -o /app/build
+WORKDIR "/src/WebApiCustomers"
+RUN dotnet build "API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "WebApiCustomers.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "WebApiCustomers.dll"]
+ENTRYPOINT ["dotnet", "API.dll"]
