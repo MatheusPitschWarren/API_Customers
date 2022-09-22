@@ -1,11 +1,11 @@
-﻿using FluentValidation;
+﻿using DomainModel.Extension;
+using DomainModel.Model;
+using FluentValidation;
 using FluentValidation.Validators;
-using WebApiCustomers.Extension;
-using WebApiCustomers.Model;
 
-namespace WebApiCustomers.Validator;
+namespace AppServices.Validator;
 
-public class CustomerValidator : AbstractValidator<CustomersModel>
+public class CustomerValidator : AbstractValidator<Customer>
 {
     public CustomerValidator()
     {
@@ -31,8 +31,8 @@ public class CustomerValidator : AbstractValidator<CustomersModel>
 
         RuleFor(c => c.DateOfBirth)
             .NotEmpty()
-            .Must(c => c.checkEighteenMore())
-                .WithMessage("Date Of Birth must not be null or empty and can't have a date greater than today");
+            .Must(c => c.IsLegalAge())
+                .WithMessage("Customer must be of greater");
 
         RuleFor(c => c.Country)
             .NotEmpty()
@@ -58,6 +58,7 @@ public class CustomerValidator : AbstractValidator<CustomersModel>
             .NotEmpty()
             .GreaterThan(0);        
     }
+
     private bool CheckCpf(string cpf)
     {
         int[] multiplierOne = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };

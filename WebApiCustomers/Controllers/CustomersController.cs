@@ -1,74 +1,83 @@
-﻿
+﻿using AppServices.Interfaces;
+using DomainModel.Model;
+using DomainServices.Expections;
 using Microsoft.AspNetCore.Mvc;
-using WebApiCustomers.Model;
-using WebApiCustomers.Services;
+using System;
 
-namespace WebApiCustomers.Controllers
+namespace API.Controllers;
+
+[Route("Api/[controller]")]
+[ApiController]
+public class CustomersController : Controller
 {
-    [Route("Api/[controller]")]
-    [ApiController]
-    public class CustomersController : Controller
+    private readonly ICustomersAppServices _customerAppServices;
+
+    public CustomersController(ICustomersAppServices customerAppServices)
     {
-        private readonly ICustomerServices _repository;
+        _customerAppServices = customerAppServices ?? throw new ArgumentNullException(nameof(customerAppServices));
+    }
 
-        public CustomersController(ICustomerServices repository)
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        var response = _customerAppServices.GetAll();
+        return Ok(response);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetById(long id)
+    {
+        try
         {
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            var response = _customerAppServices.GetById(id);
+            return Ok(response);
         }
-
-        [HttpGet]
-        public IActionResult Get()
+        catch (NotFoundException e)
         {
-            return Ok(_repository.GetAll());
+            return NotFound(e.Message);
         }
+    }
 
-        [HttpGet("{id:int}")]
-        public IActionResult GetById(int id)
+    [HttpPost]
+    public IActionResult Post(Customer model)
+    {
+        try
         {
-            var response = _repository.GetById(id);
-
-            if (response != null)
-            {
-                return Ok(response);
-            }
-            return NotFound($"Id not found: {id}");
+            var response = _customerAppServices.Create(model);
+            return Created("", response);
         }
-
-        [HttpPost]
-        public IActionResult Post(CustomersModel model)
+        catch (NotFoundException e)
         {
-            var response = _repository.Create(model);
-
-            if (response)
-            {
-                return Created("",$"Customer created with Id: {model.Id}");
-            }
-            return BadRequest("There is already a customer with this CPF and Email");
+            return BadRequest(e.Message);
         }
+    }
 
-        [HttpPut]
-        public IActionResult Put(CustomersModel model)
+    [HttpPut("{id}")]
+    public IActionResult Put(long id, Customer model)
+    {
+        try
         {
-            var response = _repository.Update(model);
-
-            if (response)
-            {
-                _repository.Update(model);
-                return Ok($"customer id was successfully changed: {model.Id}");
-            }
-            return NotFound($"A customer with that id was not found: {model.Id}");
+            model.Id = id;
+            var response = _customerAppServices.Update(model);
+            return Ok();
         }
-
-        [HttpDelete]
-        public IActionResult Delete(long id)
+        catch (NotFoundException e)
         {
-            var response = _repository.Delete(id);
+            return NotFound(e.Message);
+        }
+    }
 
-            if (response)
-            {
-                return Ok($"The customer with this Id has been deleted: {id}");
-            }
-            return NotFound($"A customer with that id was not found: {id}");
+    [HttpDelete]
+    public IActionResult Delete(long id)
+    {
+        try
+        {
+            _customerAppServices.Delete(id);
+            return NoContent();
+        }
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
         }
     }
 }
